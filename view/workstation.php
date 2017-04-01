@@ -37,7 +37,7 @@ if(isset($_REQUEST['update'])) {
 			<td colspan="2" >
 				<span >
 					<?php
-					if (isset($_REQUEST['status'])) {
+				/*	if (isset($_REQUEST['status'])) {
 						echo  "Data Updated";
 					}
 
@@ -49,7 +49,7 @@ if(isset($_REQUEST['update'])) {
 						if ($obj->deleteData($_REQUEST['del_id'], "workstation")) {
 							echo  "Data Deleted";
 						}
-					}
+					}*/
 					?>
 				</span>
 			</td>
@@ -68,6 +68,7 @@ if(isset($_REQUEST['update'])) {
 		foreach($value as $v) {
 			extract($v);
 			echo "
+			<div class='result'>
 			<tr>
 				<td>$id</td>
 				<td>$cpu_name</td>
@@ -110,7 +111,7 @@ if(isset($_REQUEST['update'])) {
 					echo "<a class='btn btn-primary' href='".$self."?page_no=".$total_no_of_pages."'>Last</a>";
 				}
 				?></td>
-			</tr><?php
+			</tr></div><?php
 		}
 		?>
 	</table>

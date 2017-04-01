@@ -57,11 +57,6 @@ body {
 	font-family: sans-serif;
 }
 
-.card-content h2 {
-	font-size: 2em;
-	color: #e74c3c;  
-}
-
 .centered {
 	margin: 0 auto;
 	padding: 0 1em;
@@ -126,38 +121,20 @@ Base styles
 .main-menu {
 	
 	color: white;
-	background: #262626;
+	background: hsl(0, 0%, 15%);
+	display: flex;
 }
 
-.post-content {
-	padding: 0 1.4em 1.4em;
+.nav-mixed {
+	/*display: flex;*/
+	flex-wrap: wrap;
+	justify-content: space-between;
 }
 
-.sidebar {
-	padding: .5em 1.4em 1em;
-	/*background: hsl(0, 0%, 90%);*/
-	overflow: hidden;
-}
-
-.example-menu ul {
-	list-style-type: none;
-	margin: 0;
-	padding: 0;
-}
-
-.example-menu a {
-	display: block;
-	padding: .4em 0;
-	color: inherit;
-	text-decoration: none;
-	transition: all 0.5s ease;
-}
-
-.example-menu a:hover,
-.example-menu a:focus {
-	padding: .4em 1em;
-	background: hsl(0, 0%, 20%);
-	color: white;
+.search-box {
+	/*margin-left: 1000px;*/
+	display: flex;
+	position: absolute; right: 0;
 }
 
 .footer-area {
@@ -173,12 +150,6 @@ Base styles
 /*--------------------------------------------------------------
 Base styles that apply to all menu items
 --------------------------------------------------------------*/
-.menu-section {
-	padding-bottom: 2em;
-	margin-bottom: 2em;
-	border-bottom: 1px solid hsl(0, 0%, );
-}
-
 .menu ul {
 	list-style-type: none;
 	padding: 0;
@@ -190,64 +161,41 @@ Base styles that apply to all menu items
 	display: block;
 	text-decoration: none;
 	color: white;
-	padding: .6em 1em;
+	padding: 1em;
 }
 
 .menu li a:hover {
 	background: hsl(0, 0%, 25%);
 }
 
+@media screen and (min-width: 30em){
+	.multi-level-nav ul {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-between;
+	} 
 
-/* Styles for Single Level Menu */
-/* @media screen and (max-width: 30em){
-	.multi-level-nav ul ul li a {
-		padding-left: 2em;
+	.multi-level-nav li {
+		flex: 1 0 auto;
+		position: relative;
+	} 
+
+	li.has-children > a {
+		padding-right: 0;
 	}
 
-	.dropdown-toggle {
-		display: none;
+	.multi-level-nav ul ul li {
+		flex: 1 1 auto;
 	}
-	} */
 
-	@media screen and (min-width: 30em){
-		.multi-level-nav ul {
-			display: flex;
-			flex-wrap: wrap;
-			justify-content: space-between;
-		} 
-
-		.multi-level-nav li {
-			flex: 1 0 auto;
-			position: relative;
-		} 
-
-		li.has-children > a {
-			padding-right: 0;
-		}
-
-	/* .multi-level-nav ul ul {
-		display: none;
-		position: absolute;
-		z-index:100;
-		} */
-
-		.multi-level-nav ul ul li {
-			flex: 1 1 auto;
-		}
-
-		.multi-level-nav ul .toggled-on {
-			display: flex;
-		}
+	.multi-level-nav ul .toggled-on {
+		display: flex;
 	}
+}
 /*--------------------------------------------------------------
 Styles for mixed menu (drop-down + social)
 --------------------------------------------------------------*/
-.nav-mixed {
-	background: hsl(0, 0%, 15%);
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-between;
-}
+
 .div-center {
 	margin-left: auto;
 	margin-right: auto;
@@ -257,50 +205,35 @@ Styles for mixed menu (drop-down + social)
 .table-custom {
 	margin: auto;
 }
-.search-box {
-	margin-left: 1000px;
+
+.dropdown {
+	position: relative;
+	display: inline-block;
 }
-/*   .table-custom tr:second-child > td {
-	color: #fff;
+
+.dropdown-content {
+	display: none;
+	position: absolute;
+	background-color: #262626;
+	min-width: 160px;
+	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+	z-index: 1;
+}
+
+.dropdown-content a {
+	color: black;
+	padding: 12px 16px;
+	text-decoration: none;
+	display: block;
+}
+
+/*.dropdown-content a:hover {background-color: #bdc3c7}*/
+
+.dropdown:hover .dropdown-content {
+	display: block;
+}
+
+.dropdown:hover .dropbtn {
 	background-color: #c0392b;
-	background-color: transparent;;
-	} */
-
- /*  .table-bordered tr:first-child > td{
- 	border-top: 2px solid transparent;
- 	border-left: 2px solid transparent;
- 	border-right: 2px solid transparent;
- 	background-color: #000000;
- 	}	 */
-
- 	.dropdown {
- 		position: relative;
- 		display: inline-block;
- 	}
-
- 	.dropdown-content {
- 		display: none;
- 		position: absolute;
- 		background-color: #262626;
- 		min-width: 160px;
- 		box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
- 		z-index: 1;
- 	}
-
- 	.dropdown-content a {
- 		color: black;
- 		padding: 12px 16px;
- 		text-decoration: none;
- 		display: block;
- 	}
-
- 	/*.dropdown-content a:hover {background-color: #bdc3c7}*/
-
- 	.dropdown:hover .dropdown-content {
- 		display: block;
- 	}
-
- 	.dropdown:hover .dropbtn {
- 		background-color: #c0392b;
- 	}
+}
 

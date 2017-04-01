@@ -70,18 +70,43 @@ ob_start();
                 </div>
               </li>
             </ul>
-
           </div><!-- .mixed-menu -->
           <div class="search-box">
             <form class="navbar-form" role="search">
               <div class="input-group add-on">
-                <input class="form-control" placeholder="Search" name="srch-term" id="srch-term" type="text">
+                <input class="form-control" placeholder="Search" name="srch-term" id="srch-term" type="text" autocomplete="off">
+                
                 <div class="input-group-btn">
                   <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+                  
                 </div>
               </div>
             </form>
+            <div class="result"></div>
           </div>
         </div><!-- main-menu -->
       </header><!-- .masthead -->
+      <script type="text/javascript">
+        $(document).ready(function() {
 
+          $('.search-box input[type="text"').on("keyup input", function() {
+            /*Get input value on change*/
+            var inputVal = $(this).val();
+            var resultDropdown = $(".result");
+            if (inputVal.length) {
+              $.get("backend-search.php", {term: inputVal}).done(function(data) {
+        // Display the return data in browser
+        resultDropdown.html(data);
+      }); 
+            } else {
+              resultDropdown.empty();
+            }
+          });
+
+  // Set search input value on click of result item
+  $(document).on("click", ".result p", function() {
+    $(this).parents(".search-box").find('input[type="text"]').val($(this).text());
+    $(this).parent(".result").empty();
+  });
+});
+</script>

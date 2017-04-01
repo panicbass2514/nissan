@@ -32,7 +32,6 @@ class NissanDatabase {
 		}
 		return $data;
 	}
-
 	public function getNumRows($table) {
 
 		$sql = "SELECT * FROM $table";
