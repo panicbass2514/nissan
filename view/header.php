@@ -11,6 +11,7 @@ ob_start();
   <script type="text/javascript" src="<?php echo "http://".$_SERVER['SERVER_NAME']?>/nissan/res/js/jquery-3.2.0.min.js"></script>
   <script type="text/javascript" src="<?php echo "http://".$_SERVER['SERVER_NAME']?>/nissan/res/js/bootstrap.js"></script>
   <script type="text/javascript" src="<?php echo "http://".$_SERVER['SERVER_NAME']?>/nissan/res/js/interface.js"></script>
+  <script type="text/javascript" src="<?php echo "http://".$_SERVER['SERVER_NAME']?>/nissan/res/js/custom.js"></script>
   <title>IT Monitoring</title>
 </head>
 <body>
@@ -74,39 +75,14 @@ ob_start();
           <div class="search-box">
             <form class="navbar-form" role="search">
               <div class="input-group add-on">
-                <input class="form-control" placeholder="Search" name="srch-term" id="srch-term" type="text" autocomplete="off">
-                
+                <input class="form-control" placeholder="Search" name="srch-term" id="srch-term" type="text" autocomplete="off">     
                 <div class="input-group-btn">
                   <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
-                  
                 </div>
               </div>
             </form>
-            <div class="result"></div>
-          </div>
+          </div><!-- search-box -->
         </div><!-- main-menu -->
       </header><!-- .masthead -->
-      <script type="text/javascript">
-        $(document).ready(function() {
-
-          $('.search-box input[type="text"').on("keyup input", function() {
-            /*Get input value on change*/
-            var inputVal = $(this).val();
-            var resultDropdown = $(".result");
-            if (inputVal.length) {
-              $.get("backend-search.php", {term: inputVal}).done(function(data) {
-        // Display the return data in browser
-        resultDropdown.html(data);
-      }); 
-            } else {
-              resultDropdown.empty();
-            }
-          });
-
-  // Set search input value on click of result item
-  $(document).on("click", ".result p", function() {
-    $(this).parents(".search-box").find('input[type="text"]').val($(this).text());
-    $(this).parent(".result").empty();
-  });
-});
-</script>
+      <main class="div-center "><table class="result well table-hover table-custom table-bordered">
+      </main>

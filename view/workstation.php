@@ -28,10 +28,11 @@ if(isset($_REQUEST['update'])) {
 		header("location:workstation.php?status=success");
 	}
 }
+
 ?>
 
 <main class="div-center ">
-	<table class="well table-hover table-custom table-bordered">
+	<table class="result well table-hover table-custom table-bordered">
 		<tr>
 			<td colspan="2"><h3>Workstations</h3></td>
 			<td colspan="2" >
@@ -196,7 +197,7 @@ if(isset($_REQUEST['update'])) {
 			// Using existing values to the modal popup fields
 			$("#update_first_name").val(user.first_name);
 			$("#update_last_name").val(user.last_name);
-			$("#update_email")val(user.email);
+			$("#update_email").val(user.email);
 		}
 		);
 		// Open modal popup
