@@ -35,7 +35,6 @@ class NissanDatabase {
 	public function getNumRows($table) {
 
 		$sql = "SELECT * FROM $table";
-
 		$q = $this->conn->query($sql) or die("Failed!");
 
 		$row = $q->rowCount();

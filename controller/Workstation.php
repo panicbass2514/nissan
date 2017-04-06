@@ -36,4 +36,13 @@ class Workstation {
 
 		return true;
 	}
+
+	public function searchData($condition) {
+		$sql = "SELECT * FROM workstation WHERE cpu_name LIKE ?";
+		$q = $this->conn->prepare($sql);
+		$q->execute(array('%'.$condition.'%'));
+		$data = $q->fetch(PDO::FETCH_ASSOC);
+
+		return $data;
+	}
 }

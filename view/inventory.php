@@ -10,29 +10,8 @@ $value = $obj->showData("item", 5);
 $rows = $obj->getNumRows("item");
 $self = $_SERVER['PHP_SELF'];
 ?>
-<div class="div-center">
-	<table class="well table-hover table-bordered table-custom">
 		<tr>
-			<td colspan="5"><h3>Inventories</h3></td>
-				<td colspan="4" >
-				<span  class='<?php echo (!empty($_REQUEST)? "alert alert-success" : " ")?>'>
-				<?php
-				if (isset($_REQUEST['status'])) {
-					echo  "Data Updated";
-				}
-
-				if (isset($_REQUEST['status_insert'])) {
-					echo   "Data Inserted";
-				}
-
-				if (isset($_REQUEST['del_id'])) {
-					if ($obj->deleteData($_REQUEST['del_id'], "workstation")) {
-						echo  "Data Deleted";
-					}
-				}
-				?>
-				</span>
-			</td>
+			<td colspan="9"><h3>Inventories</h3></td>
 			<td colspan="1" >
 				
 					<button class="btn btn-primary" title="Add Inventory"><a href="addInventory.php">Add Inventory</a></button>

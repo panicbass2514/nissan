@@ -1,16 +1,26 @@
 <?php
+/*Includes all the header menu and functions*/
 include('header.php');
 
+/*Autoloads a controller file*/
 function __autoload($class) {
 	$filename ="../controller/" .$class. ".php";
 	include_once($filename);
 }
 
-$obj = new NissanDatabase;
+/*An instance to Nissan Class*/
+$nissan = new NissanDatabase;
+/*An instance to Workstation Class*/
 $workstation = new Workstation;
-$value = $obj->showData("workstation", 5);
-$rows = $obj->getNumRows("workstation");
+
+$value = $nissan->showData("workstation", 5);
+$rows = $nissan->getNumRows("workstation");
+
 $self = $_SERVER['PHP_SELF'];
+
+if(!empty($_REQUEST['key']) && isset($_REQUEST['key'])) {
+	$key = $_REQUEST['key'];
+}
 
 /*Insert Data Verification*/
 if(isset($_REQUEST['insert'])) {
@@ -24,52 +34,30 @@ if(isset($_REQUEST['insert'])) {
 if(isset($_REQUEST['update'])) {
 	extract($_REQUEST);
 	if($workstation->updateData($id, $cpu_name, $employee, $blocked_sites, "workstation"))
-	 {
+	{
 		header("location:workstation.php?status=success");
 	}
 }
-
 ?>
-
-<main class="div-center ">
-	<table class="result well table-hover table-custom table-bordered">
-		<tr>
-			<td colspan="2"><h3>Workstations</h3></td>
-			<td colspan="2" >
-				<span >
-					<?php
-				/*	if (isset($_REQUEST['status'])) {
-						echo  "Data Updated";
-					}
-
-					if (isset($_REQUEST['status_insert'])) {
-						echo   "Data Inserted";
-					}
-
-					if (isset($_REQUEST['del_id'])) {
-						if ($obj->deleteData($_REQUEST['del_id'], "workstation")) {
-							echo  "Data Deleted";
-						}
-					}*/
-					?>
-				</span>
-			</td>
-			<td colspan="1">
-				<button type="button" data-toggle="modal" data-target="#workstation_dialog" class="btn btn-primary">Add Workstation</button>
-			</td>
-		</tr>
-		<tr>
-			<th scope="col">ID</th>
-			<th scope="col">CPU Name</th>
-			<th scope="col">Employee</th>
-			<th scope="col">Blocked Sites</th>
-			<th scope="col">Action</th>
-		</tr>
-		<?php 
-		foreach($value as $v) {
-			extract($v);
-			echo "
-			<div class='result'>
+<tr>
+	<td colspan="4"><h3>Workstations</h3></td>
+	<td colspan="1">
+		<button type="button" data-toggle="modal" data-target="#workstation_dialog" class="btn btn-primary">Add Workstation</button>
+	</td>
+</tr>
+<tr>
+	<th scope="col">ID</th>
+	<th scope="col">CPU Name</th>
+	<th scope="col">Employee</th>
+	<th scope="col">Blocked Sites</th>
+	<th scope="col">Action</th>
+</tr>
+<?php
+if (!isset($key)) {
+	foreach($value as $v) {
+		// var_dump($value);
+		extract($v);
+		echo "
 			<tr>
 				<td>$id</td>
 				<td>$cpu_name</td>
@@ -84,6 +72,29 @@ if(isset($_REQUEST['update'])) {
 			</tr>
 			";	
 		}
+	} elseif(!empty($key) && isset($key)) {
+		$key_result = $workstation->searchData($key);
+		var_dump($key_result);
+
+		foreach($key_result as $k) {
+			extract($k);
+			echo "
+				<tr>
+					<td>$id</td>
+					<td>$cpu_name</td>
+					<td>$employee</td>
+					<td>$blocked_sites</td>
+					<td>
+						<button type='button' data-toggle='modal' data-target='#workstation_dialog' class='btn btn-danger'><a href='#'><span class='glyphicon glyphicon-wrench'>Modal</span></a></button>&nbsp;&nbsp;
+						<button class='btn btn-danger'><a href='updateWorkstation.php?id=$id'><span class='glyphicon glyphicon-wrench'>Link</span></a></button>&nbsp;&nbsp;
+						<button class='btn btn-danger'><a href='workstation.php?del_id=$id'><span class='glyphicon glyphicon-remove'></span></a></button>
+					</td>
+
+				</tr>
+				";	
+			}
+		} 
+
 		if ($rows > 0) {
 			?><tr>
 			<td colspan="5">
@@ -151,8 +162,8 @@ if(isset($_REQUEST['update'])) {
 	<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 	<button type="button" id="submitForm" class="btn btn-default">Send</button>
 </div> -->
-		</div>
-	</div>
+</div>
+</div>
 </div>
 
 <script>
@@ -229,45 +240,3 @@ if(isset($_REQUEST['update'])) {
 		});
 	}
 </script>
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-  <title>Bootstrap Example</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-</head>
-<body>
-
-<div class="container">
-  <h2>Modal Example</h2>
-  Trigger the modal with a button
-  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
-
-  Modal
-  <div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
-    
-      Modal content
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-        </div>
-        <div class="modal-body">
-          <p>Success</p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
-      </div>
-      
-    </div>
-  </div>
-  
-</div>
-
-</body>
-</html>
- -->
