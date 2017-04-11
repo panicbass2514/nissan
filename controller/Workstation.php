@@ -41,8 +41,10 @@ class Workstation {
 		$sql = "SELECT * FROM workstation WHERE cpu_name LIKE ?";
 		$q = $this->conn->prepare($sql);
 		$q->execute(array('%'.$condition.'%'));
-		$data = $q->fetch(PDO::FETCH_ASSOC);
-
+		
+		while($r = $q->fetch(PDO::FETCH_ASSOC)) {
+			$data[] = $r;
+		}
 		return $data;
 	}
 }

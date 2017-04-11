@@ -57,21 +57,20 @@ if(!empty($term) && isset($term)){
 }
 // close connection
 mysqli_close($link);*/
-
-
 function __autoload($class) {
-    $filename = "../controller".$class. ".php";
+    $filename = "../controller/".$class. ".php";
     include_once($filename);
 }
 
 $workstation = new Workstation;
 
+
 if(isset($_REQUEST['key']) && !empty($_REQUEST['key'])) {
     $key = $_REQUEST['key'];
 }
-echo $_REQUEST['key'];
 
 if(!empty($key) && isset($key)) {
+
     $key_result = $workstation->searchData($key);
     foreach($key_result as $k) {
         extract($k);

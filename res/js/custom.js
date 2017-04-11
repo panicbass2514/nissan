@@ -1,8 +1,8 @@
 
-$(document).ready(function() {
+/*$(document).ready(function() {
 
 	$('.search-box input[type="text"').on("keyup input", function() {
-		/*Get input value on change*/
+		// Get input value on change
 		var inputVal = $(this).val();
 		var resultDropdown = $(".result");
 		if (inputVal.length) {
@@ -21,7 +21,7 @@ $(document).ready(function() {
     $(this).parents(".search-box").find('input[type="text"]').val($(this).text());
     $(this).parent(".result").empty();
 });
-});
+});*/
 
 
 $(document).ready(function() {
@@ -30,7 +30,7 @@ $(document).ready(function() {
 		var resultDropdown = $(".result");
 
 		if (inputVal.length) {
-			$.get("http://localhost/nissan/workstation.php", {key: inputVal}).done(function(data){
+			$.get("http://localhost/nissan/view/backend-search.php", {key: inputVal}).done(function(data){
 				resultDropdown.html(data);
 			});
 		} else {
