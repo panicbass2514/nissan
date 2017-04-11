@@ -1,7 +1,7 @@
 <?php
 /* Attempt MySQL server connection. Assuming you are running MySQL
 server with default setting (user 'root' with no password) */
-/*$link = mysqli_connect("localhost", "root", "", "nissan");
+$link = mysqli_connect("localhost", "root", "", "nissan");
 
 // Check connection
 if($link === false){
@@ -11,9 +11,6 @@ if($link === false){
 
 // Escape user inputs for security
 $term = mysqli_real_escape_string($link, $_REQUEST['term']);
-
-echo "HERE \n";
-var_dump($term);
 
 if(!empty($term) && isset($term)){
     // Attempt select query execution
@@ -56,10 +53,10 @@ if(!empty($term) && isset($term)){
 }
 }
 // close connection
-mysqli_close($link);*/
+mysqli_close($link);
 
 
-function __autoload($class) {
+/*function __autoload($class) {
     $filename = "../controller".$class. ".php";
     include_once($filename);
 }
@@ -90,5 +87,5 @@ if(!empty($key) && isset($key)) {
         </tr>
         ";  
     }
-} 
+} */
 ?>

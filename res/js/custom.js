@@ -25,7 +25,7 @@
 
 
 $(document).ready(function() {
-	$('.seach-box input[type="text"').on("keyup input", function() {
+	$('.search-box input[type="text"').on("keyup input", function() {
 		var inputVal = $(this).val();
 		var resultDropdown = $(".result");
 
@@ -33,8 +33,14 @@ $(document).ready(function() {
 			$.get("http://localhost/nissan/view/backend-search.php", {key: inputVal}).done(function(data){
 				resultDropdown.html(data);
 			});
+			/*$.get("backend-search.php", {term: inputVal}).done(function(data){
+				resultDropdown.html(data);
+			});*/
 		} else {
-			resultDropdown.empty();
+			$.get("http://localhost/nissan/view/backend-search.php").done(function(data){
+				resultDropdown.html(data);	
+			})
+			
 		}
 	});
-})
+});
