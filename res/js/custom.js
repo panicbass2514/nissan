@@ -30,14 +30,12 @@ $(document).ready(function() {
 		var resultDropdown = $(".result");
 
 		if (inputVal.length) {
-			$.get("http://localhost/nissan/view/backend-search.php", {key: inputVal}).done(function(data){
+			$.get("http://localhost/nissan/view/workstation_backend.php", {key: inputVal}).done(function(data){
 				resultDropdown.html(data);
 			});
-			/*$.get("backend-search.php", {term: inputVal}).done(function(data){
-				resultDropdown.html(data);
-			});*/
+			
 		} else {
-			$.get("http://localhost/nissan/view/backend-search.php").done(function(data){
+			$.get("http://localhost/nissan/view/workstation_backend.php").done(function(data){
 				resultDropdown.html(data);	
 			})
 			

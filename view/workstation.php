@@ -1,23 +1,7 @@
 <?php
 /*Includes all the header menu and functions*/
 include('header.php');
-include('backend-search.php');
-/*Autoloads a controller file*/
-
-
-/*An instance to Nissan Class*/
-$nissan = new NissanDatabase;
-/*An instance to Workstation Class*/
-$workstation = new Workstation;
-
-// Limit Value for pagination
-$limit = 5;
-
-$value = $nissan->showData("workstation", $limit);
-$rows = $nissan->getNumRows("workstation");
-
-// Gets the URL of the current PHP file
-$self = $_SERVER['PHP_SELF'];
+include('workstation_backend.php');
 
 // Checks if the key is requested or set
 if(!empty($_REQUEST['key']) && isset($_REQUEST['key'])) {
@@ -41,74 +25,7 @@ if(isset($_REQUEST['update'])) {
 	}
 }
 ?>
-<!-- <tr>
-	<td colspan="4"><h3>Workstations</h3></td>
-	<td colspan="1">
-		<button type="button" data-toggle="modal" data-target="#workstation_dialog" class="btn btn-primary">Add Workstation</button>
-	</td>
-</tr>
-<tr>
-	<th>ID</th>
-	<th>CPU Name</th>
-	<th>Employee</th>
-	<th>Blocked Sites</th>
-	<th>Action</th>
-</tr> -->
-<?php
-// If no key is set display all records with pagination
-// if (!isset($key)) {
-// 	foreach($value as $v) {
-// 		extract($v);
-// 		echo "
-// 		<tr>
-// 			<td>$id</td>
-// 			<td>$cpu_name</td>
-// 			<td>$employee</td>
-// 			<td>$blocked_sites</td>
-// 			<td>
-// 				<button type='button' data-toggle='modal' data-target='#workstation_dialog' class='btn btn-danger'><a href='#'><span class='glyphicon glyphicon-wrench'>Modal</span></a></button>&nbsp;&nbsp;
-// 				<button class='btn btn-danger'><a href='updateWorkstation.php?id=$id'><span class='glyphicon glyphicon-wrench'>Link</span></a></button>&nbsp;&nbsp;
-// 				<button class='btn btn-danger'><a href='workstation.php?del_id=$id'><span class='glyphicon glyphicon-remove'></span></a></button>
-// 			</td>
 
-// 		</tr>
-// 		";	
-// 	}
-// }
-
-// if ($rows > 0) {
-	?><!-- <tr>
-	<td colspan="5"> -->
-		<?php 
-		/*$total_no_of_pages = ceil($rows/5);
-
-		$current_page = 1;
-		if (isset($_GET['page_no'])) {
-			$current_page = $_GET['page_no'];
-		}
-		if ($current_page != 1) {
-			$previous = $current_page - 1;
-			echo "<a class='btn btn-primary' href='".$self."'?page_no=1'>First</a>&nbsp;&nbsp";
-			echo "<a class='btn btn-primary' href='".$self."?page_no=".$previous."'>Previous</a>&nbsp;&nbsp;";
-		}
-		for ($i = 1; $i <= $total_no_of_pages; $i++) {
-			if ($i == $current_page) {
-				echo "<strong><a class='btn btn-primary' href='".$self."?page_no=".$i."'>".$i."</a></strong>&nbsp;&nbsp;";
-			} else {
-				echo "<a class='btn btn-primary' href='".$self."?page_no=".$i."'>".$i."</a>&nbsp;&nbsp";
-			}
-		}
-		if($current_page != $total_no_of_pages) {
-			$next = $current_page + 1;
-			echo "<a class='btn btn-primary' href='".$self."?page_no=".$next."'>Next</a>&nbsp;&nbsp;";
-			echo "<a class='btn btn-primary' href='".$self."?page_no=".$total_no_of_pages."'>Last</a>";
-		}*/
-		?><!-- </td>
-			</tr> --><?php
-// }
-?>
-<!-- </table>
-</main> -->
 <div class="modal fade" id="workstation_dialog" role="dialog">
 	<div class="modal-dialog">
 		<div class="modal-content">
