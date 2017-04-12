@@ -1,44 +1,54 @@
-
-/*$(document).ready(function() {
-
-	$('.search-box input[type="text"').on("keyup input", function() {
-		// Get input value on change
-		var inputVal = $(this).val();
-		var resultDropdown = $(".result");
-		if (inputVal.length) {
-			$.get("http://localhost/nissan/backend-search.php", {term: inputVal}).done(function(data) {
-        // Display the return data in browser
-        resultDropdown.html(data);
-    }
-    ); 
-		} else {
-			resultDropdown.empty();
-		}
-	});
-
-  // Set search input value on click of result item
-  $(document).on("click", ".result p", function() {
-    $(this).parents(".search-box").find('input[type="text"]').val($(this).text());
-    $(this).parent(".result").empty();
-});
-});*/
-
+/*Workstation Backend Query*/
 
 $(document).ready(function() {
-	$('.search-box input[type="text"').on("keyup input", function() {
+	$('.search-workstation input[type="text"').on("keyup input", function() {
 		var inputVal = $(this).val();
 		var resultDropdown = $(".result");
 
 		if (inputVal.length) {
-			$.get("http://localhost/nissan/view/workstation_backend.php", {key: inputVal}).done(function(data){
+			$.get("http://localhost/nissan/view/workstation_backend.php", {key: inputVal}).done(function(data) {
 				resultDropdown.html(data);
 			});
-			
+
 		} else {
-			$.get("http://localhost/nissan/view/workstation_backend.php").done(function(data){
+			$.get("http://localhost/nissan/view/workstation_backend.php").done(function(data) {
 				resultDropdown.html(data);	
-			})
+			});
 			
 		}
 	});
+
+	$('search-issues input[type="text"').on("keyup input", function() {
+		var inputVal = $(this).val();
+		var resultDropdown = $(".result");
+
+		if (inputVal.length) {
+			$.get("http://localhost/nissan/view/issues_backend.php", {key: inputVal}).done(function(data){
+				resultDropdown.html(data);
+			});
+		} else {
+			$.get("http://localhost/nissan/view/issues_backend.php").done(function(data) {
+				resultDropdown.html(data);
+			});
+		}
+	});
+
+	$('search-inventory input[type="text"').on("keyup input", function() {
+		var inputVal = $(this).val();
+		var resultDropdown = $(".result");
+
+		if(inputVal.length) {
+			$.get("http://localhost/nissan/view/inventory_backend.php", {key: inputVal}).done(function(data) {
+				resultDropdown.html(data);
+			});
+		} else {
+			$.get("http://localhost/nissan/view/inventory_backend.php").done(function(data) {
+				resultDropdown.html(data);
+			});
+		}
+	});
 });
+/*// Set search input value on click of result item
+  $(document).on("click", ".result p", function() {
+    $(this).parents(".search-box").find('input[type="text"]').val($(this).text());
+    $(this).parent(".result").empty();*/

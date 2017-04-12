@@ -89,7 +89,14 @@ ob_start();
               </ul>
             </div><!-- .mixed-menu -->
             <!-- Search Box with AJAX Autocomplete Feature -->
-            <div class="search-box">
+            
+            <?php 
+            $self = $_SERVER['PHP_SELF'];
+            $searchClass = ($self == '/nissan/view/issues.php') ? "search-issues" : (($self == '/nissan/view/inventory.php') ? "search-inventory" : (($self == '/nissan/view/workstation.php') ? "search-workstation" : "search-nissan"));
+
+            echo $searchClass;
+             ?>
+            <div class="<?php echo $searchClass; ?>">
               <form class="navbar-form" role="search">
                 <div class="input-group add-on">
                   <input class="form-control" placeholder="Search" name="srch-term" id="srch-term" type="text" autocomplete="off">     

@@ -17,17 +17,6 @@ class Workstation {
 		}
 	}	
 
-	public function updateData($id, $cpu_name, $employee, $blocked_sites, $table) {
-		$sql = "UPDATE $table
-		SET cpu_name=:cpu_name, employee=:employee, blocked_sites=:blocked_sites
-		WHERE id=:id";
-		$q = $this->conn->prepare($sql);
-		$q->execute(array(":id" => $id, ":cpu_name" => $cpu_name, ":employee" => $employee, ":blocked_sites" => $blocked_sites));
-
-		return true;	
-
-	}
-
 	public function insertData($cpu_name, $employee, $blocked_sites, $table) {
 		$sql = "INSERT INTO $table 
 		SET cpu_name=:cpu_name, employee=:employee, blocked_sites=:blocked_sites";
@@ -46,5 +35,17 @@ class Workstation {
 			$data[] = $r;
 		}
 		return $data;
+	}
+
+
+	public function updateData($id, $cpu_name, $employee, $blocked_sites, $table) {
+		$sql = "UPDATE $table
+		SET cpu_name=:cpu_name, employee=:employee, blocked_sites=:blocked_sites
+		WHERE id=:id";
+		$q = $this->conn->prepare($sql);
+		$q->execute(array(":id" => $id, ":cpu_name" => $cpu_name, ":employee" => $employee, ":blocked_sites" => $blocked_sites));
+
+		return true;	
+
 	}
 }

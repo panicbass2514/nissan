@@ -1,13 +1,11 @@
 <?php 
 include('header.php');
+include('inventory_backend.php');
 
-function __autoload($class) {
-	$filename ="../controller/" .$class. ".php";
-	include_once($filename);
-}
-$obj = new Inventory;
-$value = $obj->showData("item", 5);
-$rows = $obj->getNumRows("item");
+$inventory = new Inventory;
+$nissan = new NissanDatabase;
+$value = $nissan->showData("item", 5);
+$rows = $nissan->getNumRows("item");
 $self = $_SERVER['PHP_SELF'];
 ?>
 		<tr>
