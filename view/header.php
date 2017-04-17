@@ -94,19 +94,19 @@ ob_start();
             $self = $_SERVER['PHP_SELF'];
             $searchClass = ($self == '/nissan/view/issues.php') ? "search-issues" : (($self == '/nissan/view/inventory.php') ? "search-inventory" : (($self == '/nissan/view/workstation.php') ? "search-workstation" : "search-nissan"));
 
-            echo $searchClass;
-             ?>
-            <div class="<?php echo $searchClass; ?>">
-              <form class="navbar-form" role="search">
-                <div class="input-group add-on">
-                  <input class="form-control" placeholder="Search" name="srch-term" id="srch-term" type="text" autocomplete="off">     
-                  <div class="input-group-btn">
-                    <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+            // echo $searchClass;
+            ?>
+              <div class='<?php echo "$searchClass"; ?>'>
+                <form class="navbar-form" role="search">
+                  <div class="input-group add-on">
+                    <input class="form-control" placeholder="Search" name="srch-term" id="srch-term" type="text" autocomplete="off">     
+                    <div class="input-group-btn">
+                      <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+                    </div>
                   </div>
-                </div>
-              </form>
-            </div><!-- search-box -->
-          </div><!-- main-menu -->
-        </header><!-- .masthead -->
-        <!-- <main class="div-center "> -->
-        <table class="result well table-hover table-custom table-bordered">
+                </form>
+              </div><!-- search-box -->
+            </div><!-- main-menu -->
+          </header><!-- .masthead -->
+          <!-- <main class="div-center "> -->
+          <table class="result well table-hover table-custom ">

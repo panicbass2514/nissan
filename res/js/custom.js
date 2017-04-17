@@ -18,7 +18,7 @@ $(document).ready(function() {
 		}
 	});
 
-	$('search-issues input[type="text"').on("keyup input", function() {
+	/*$('.search-issues input[type="text"').on("keyup input", function() {
 		var inputVal = $(this).val();
 		var resultDropdown = $(".result");
 
@@ -31,9 +31,9 @@ $(document).ready(function() {
 				resultDropdown.html(data);
 			});
 		}
-	});
+	});*/
 
-	$('search-inventory input[type="text"').on("keyup input", function() {
+	$('.search-inventory input[type="text"').on("keyup input", function() {
 		var inputVal = $(this).val();
 		var resultDropdown = $(".result");
 
@@ -43,8 +43,9 @@ $(document).ready(function() {
 			});
 		} else {
 			$.get("http://localhost/nissan/view/inventory_backend.php").done(function(data) {
-				resultDropdown.html(data);
+				resultDropdown.html(data);	
 			});
+
 		}
 	});
 });

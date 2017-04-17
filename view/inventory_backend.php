@@ -41,7 +41,6 @@ if (isset($_REQUEST['key']) && !empty($_REQUEST['key'])) {
 if (!empty($key) && isset($key)) {
 
 	$key_result = $inventory->searchData($key);
-	var_dump($key_result);
 	foreach($key_result as $k) {
 		extract($k);
 		echo "
@@ -84,35 +83,35 @@ if (!empty($key) && isset($key)) {
 		";
 	}
 	if ($rows > 0) {
-		?>
-		<tr>
-			<td colspan="10"><?php 
-				$total_no_of_pages = ceil($rows/5);
+        ?>
+        <tr>
+            <td colspan="5">
+                <?php 
+                $total_no_of_pages = ceil($rows/5);
 
-				$current_page = 1;
-				if (isset($_GET['page_no'])) {
-					$current_page = $_GET['page_no'];
-				}
-				if ($current_page != 1) {
-					$previous = $current_page - 1;
-					echo "<a class='btn btn-primary' href='".$self."'?page_no=1'>First</a>&nbsp;&nbsp";
-					echo "<a class='btn btn-primary' href='".$self."?page_no=".$previous."'>Previous</a>&nbsp;&nbsp;";
-				}
-				for ($i = 1; $i <= $total_no_of_pages; $i++) {
-					if ($i == $current_page) {
-						echo "<strong><a class='btn btn-primary' href='".$self."?page_no=".$i."'>".$i."</a></strong>&nbsp;&nbsp;";
-					} else {
-						echo "<a class='btn btn-primary' href='".$self."?page_no=".$i."'>".$i."</a>&nbsp;&nbsp";
-					}
-				}
-				if($current_page != $total_no_of_pages) {
-					$next = $current_page + 1;
-					echo "<a class='btn btn-primary' href='".$self."?page_no=".$next."'>Next</a>&nbsp;&nbsp;";
-					echo "<a class='btn btn-primary' href='".$self."?page_no=".$total_no_of_pages."'>Last</a>";
-				}
-				?></td>
-			</tr></table></main><?php
-		}
-	}	
-	?>
-
+                $current_page = 1;
+                if (isset($_GET['page_no'])) {
+                    $current_page = $_GET['page_no'];
+                }
+                if ($current_page != 1) {
+                    $previous = $current_page - 1;
+                    echo "<a class='btn btn-primary' href='".$self."'?page_no=1'>First</a>&nbsp;&nbsp";
+                    echo "<a class='btn btn-primary' href='".$self."?page_no=".$previous."'>Previous</a>&nbsp;&nbsp;";
+                }
+                for ($i = 1; $i <= $total_no_of_pages; $i++) {
+                    if ($i == $current_page) {
+                        echo "<strong><a class='btn btn-primary' href='".$self."?page_no=".$i."'>".$i."</a></strong>&nbsp;&nbsp;";
+                    } else {
+                        echo "<a class='btn btn-primary' href='".$self."?page_no=".$i."'>".$i."</a>&nbsp;&nbsp";
+                    }
+                }
+                if($current_page != $total_no_of_pages) {
+                    $next = $current_page + 1;
+                    echo "<a class='btn btn-primary' href='".$self."?page_no=".$next."'>Next</a>&nbsp;&nbsp;";
+                    echo "<a class='btn btn-primary' href='".$self."?page_no=".$total_no_of_pages."'>Last</a>";
+                }
+                ?></td>
+            </tr></table></main><?php
+        }
+    } 
+    ?>

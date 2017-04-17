@@ -2,82 +2,62 @@
 include('header.php');
 include('inventory_backend.php');
 
-$inventory = new Inventory;
-$nissan = new NissanDatabase;
-$value = $nissan->showData("item", 5);
-$rows = $nissan->getNumRows("item");
-$self = $_SERVER['PHP_SELF'];
-?>
-		<tr>
-			<td colspan="9"><h3>Inventories</h3></td>
-			<td colspan="1" >
-				
-					<button class="btn btn-primary" title="Add Inventory"><a href="addInventory.php">Add Inventory</a></button>
-				
-			</td>
-		</tr>
-		<tr>
-			<th scope="col">ID</th>
-			<th scope="col">Name</th>
-			<th scope="col">Label</th>
-			<th scope="col">Model Name</th>
-			<th scope="col">Model Number</th>
-			<th scope="col">Serial Code</th>
-			<th scope="col">PO Number</th>
-			<th scope="col">Date Accquired</th>
-			<th scope="col">Remarks</th>
-			<th width="130" scope="col">Action</th>
-		</tr>
-		<?php 
-		foreach($value as $v) {
-			extract($v);
-			echo "
-			<tr >
-				<td>$id</td>
-				<td>$name</td>
-				<td>$label</td>
-				<td>$model_name</td>
-				<td>$model_number</td>
-				<td>$serial_code</td>
-				<td>$po_no</td>
-				<td>$date_accquired</td>
-				<td>$remarks</td>
-				<td>
-					<button class='btn btn-danger' title='Update'><a href='updateInventory.php?id=$id' hover='update'><span class='glyphicon glyphicon-wrench'></a></button>&nbsp;&nbsp;
-					<button class='btn btn-danger' title='Delete'><a href='inventory.php?del_id=$id'><span class='glyphicon glyphicon-remove'></span></a></button>
-				</td>
-			</tr>
-			";	
-		}
-		if ($rows > 0) {
-			?><tr>
-			<td colspan="10"><?php 
-				$total_no_of_pages = ceil($rows/5);
+// Checks if the key is requested or set
+if(!empty($_REQUEST['key']) && isset($_REQUEST['key'])) {
+	$key = $_REQUEST['key'];
+}
 
-				$current_page = 1;
-				if (isset($_GET['page_no'])) {
-					$current_page = $_GET['page_no'];
-				}
-				if ($current_page != 1) {
-					$previous = $current_page - 1;
-					echo "<a class='btn btn-primary' href='".$self."'?page_no=1'>First</a>&nbsp;&nbsp";
-					echo "<a class='btn btn-primary' href='".$self."?page_no=".$previous."'>Previous</a>&nbsp;&nbsp;";
-				}
-				for ($i = 1; $i <= $total_no_of_pages; $i++) {
-					if ($i == $current_page) {
-						echo "<strong><a class='btn btn-primary' href='".$self."?page_no=".$i."'>".$i."</a></strong>&nbsp;&nbsp;";
-					} else {
-						echo "<a class='btn btn-primary' href='".$self."?page_no=".$i."'>".$i."</a>&nbsp;&nbsp";
-					}
-				}
-				if($current_page != $total_no_of_pages) {
-					$next = $current_page + 1;
-					echo "<a class='btn btn-primary' href='".$self."?page_no=".$next."'>Next</a>&nbsp;&nbsp;";
-					echo "<a class='btn btn-primary' href='".$self."?page_no=".$total_no_of_pages."'>Last</a>";
-				}
-				?></td>
-			</tr><?php
-		}
-		?>
-	</table>
+// Insert Data Verification
+if(isset($_REQUEST['insert'])) {
+	extract($_REQUEST);
+	if($inventory->insertData($name, $label, $model_name, $model_number, $serial_code, $po_no, $date_accquired, $remarks, "item")) {
+		header("location:inventory.php?status_insert=success");
+	}
+}
+
+// Update Data Verification
+if(isset($_REQUEST['update'])) {
+	extract($_REQUEST);
+	if($inventory->updateData($id, $name, $label, $model_name, $model_number, $serial_code, $po_no, $date_accquired, $remarks, "item"))
+	{
+		header("location:invenetory.php?status=success");
+	}
+}
+?>
+<div class="modal fade" id="inventory_dialog" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h4 class="modal-title">Add inventory</h4>
+			</div>
+			<div class="modal-body">
+				<form class="form-group" id="inventory_form" action="inventory.php" method="POST">
+
+					<table width="400" class="table-bordered table-custom">
+						<tr>
+							<th scope="row">CPU Name</th>
+							<td><input class="form-control" type="text" name="cpu_name" value="<?php $cpu_name ?>"></td>
+						</tr>
+						<tr>
+							<th scope="row">Employee</th>
+							<td><input class="form-control" type="text" name="employee" value="<?php $employee ?>"></td>
+						</tr>
+						<tr>
+							<th scope="row">Blocked Sites</th>
+							<td><input class="form-control" type="text" name="blocked_sites" value="<?php $blocked_sites ?>"></td>
+						</tr>
+						<tr>
+							<td><input type="submit" name="insert" value="Insert" class="btn btn-primary"></td>
+							<td><button class="btn btn-danger"><a href="inventory.php">Cancel</a></button></td>
+						</tr>
+					</table>
+				</form>
+			</div>
+<!-- 			<div class="modal-footer">
+	<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	<button type="button" id="submitForm" class="btn btn-default">Send</button>
+</div> -->
+</div>
+</div>
 </div>
