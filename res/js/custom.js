@@ -18,7 +18,7 @@ $(document).ready(function() {
 		}
 	});
 
-	/*$('.search-issues input[type="text"').on("keyup input", function() {
+	$('.search-issues input[type="text"').on("keyup input", function() {
 		var inputVal = $(this).val();
 		var resultDropdown = $(".result");
 
@@ -31,7 +31,7 @@ $(document).ready(function() {
 				resultDropdown.html(data);
 			});
 		}
-	});*/
+	});
 
 	$('.search-inventory input[type="text"').on("keyup input", function() {
 		var inputVal = $(this).val();

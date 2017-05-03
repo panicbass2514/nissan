@@ -8,7 +8,7 @@ if(!empty($_REQUEST['key']) && isset($_REQUEST['key'])) {
 	$key = $_REQUEST['key'];
 }
 
-/*Insert Data Verification*/
+// Insert Data Verification
 if(isset($_REQUEST['insert'])) {
 	extract($_REQUEST);
 	if($workstation->insertData($cpu_name, $employee, $blocked_sites,"workstation")) {
@@ -16,15 +16,38 @@ if(isset($_REQUEST['insert'])) {
 	}
 }
 
-/*Update Data Verification*/
+// Update Data Verification
 if(isset($_REQUEST['update'])) {
 	extract($_REQUEST);
 	if($workstation->updateData($id, $cpu_name, $employee, $blocked_sites, "workstation"))
 	{
 		header("location:workstation.php?status=success");
+	} 
+}
+// Delete Data
+if (isset($_REQUEST['del_id'])) {
+	if ($nissan->deleteData($_REQUEST['del_id'], "workstation")) {
+		// echo "You Data Has Succecssfully Deleted";
+		header("location:workstation.php");
 	}
 }
 ?>
+
+<div class="modal fade" id="workstation_delete_form" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">		
+			</div>
+			<div class="modal-body">
+				<!-- <form class="form-group" id="workstation_delete_form" method="POST"> -->
+				<!-- <input id="btn_confirm" type="submit" name="delete" value="Yes" class="btn btn-danger">	 -->
+				<a class="btn btn-danger btn-ok">Delete</a>
+				<button class="btn btn-danger" data-dismiss="modal">Cancel</button>
+				<!-- </form> -->
+			</div>
+		</div>
+	</div>
+</div>
 
 <div class="modal fade" id="workstation_dialog" role="dialog">
 	<div class="modal-dialog">
@@ -39,7 +62,7 @@ if(isset($_REQUEST['update'])) {
 					<table width="400" class="table-bordered table-custom">
 						<tr>
 							<th scope="row">CPU Name</th>
-							<td><input class="form-control" type="text" name="cpu_name" value="<?php $cpu_name ?>"></td>
+							<td><input class="form-control" type="text" name="cpu_name" value=""></td>
 						</tr>
 						<tr>
 							<th scope="row">Employee</th>
@@ -63,6 +86,8 @@ if(isset($_REQUEST['update'])) {
 </div>
 </div>
 </div>
+
+
 
 <script>
 	/*Must apply only after HTML has loaded*/
@@ -93,48 +118,23 @@ if(isset($_REQUEST['update'])) {
 		// $("#submitForm").on('click', function() {
 		// 	$("#contact_form").submit();
 		// });
+
+		$('#workstation_delete_form').on('submit', function(e) {
+			$('#workstation_delete_form')
+		});
+
+
+		$('#button_delete').click(function() 
+		{
+			var idx = $(this).val();
+
+			$('.modal-header').val(idx);
+		});
+
+		$('#workstation_delete_form').on('show.bs.modal', function(e) {
+			$(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
+		});
 	});
 
-	function getUserDetails(id) {
-		$('#hidden_user_id').val(id);
-		$.post("ajax/readUserDetails.php", {
-			id: id
-		},
-		function (data, status) {
-			// PARSE json data
-			var user = JSON.parse(data);
-			// Using existing values to the modal popup fields
-			$("#update_first_name").val(user.first_name);
-			$("#update_last_name").val(user.last_name);
-			$("#update_email").val(user.email);
-		}
-		);
-		// Open modal popup
-		$("#update_user_modal").modal("show");
-	}	
 
-	function UpdateUserDetails() {
-
-		// get values
-		var first_name = $("#update_first_name").val();
-		var last_name = $("#update_last_name").val();
-		var email = $("#update_email").val();
-
-		// Get hidden field value
-		var id = $("#hidden_user_id").val();
-
-		// Update the details by requesting to the server using ajax
-		$.post("ajax/updateUserDetails.php",  {
-			id: id,
-			first_name: first_name,
-			last_name: last_name,
-			email: email
-		},
-		function (data, status) {
-			// Hide modal popup
-			$("#update_user_modal").modal("hide");
-			// Reload Users by using readRecords();
-			readRecords();
-		});
-	}
 </script>

@@ -1,62 +1,67 @@
 <?php 
 
 function __autoload($class) {
-	$filename = "../controller/".$class. ".php";
+	$filename = '../controller/'.$class. '.php';
 	include_once($filename);
 }
 
-$inventory = new Inventory;
+$issues = new Issues;
 $nissan = new NissanDatabase;
-$self = "http://localhost/nissan/view/inventory.php";
+$self = 'http://localhost/nissan/view/issues.php';
 $limit = 5;
 
-$value = $nissan->showData("item", $limit);
-$rows = $nissan->getNumRows("item");
+$value = $nissan->showData('issues', $limit);
+$rows = $nissan->getNumRows('issues');
 
 if (isset($_REQUEST['key']) && !empty($_REQUEST['key'])) {
 	$key = $_REQUEST['key'];
 }
 ?>
 <tr>
-	<td colspan="9"><h3>Inventories</h3></td>
-	<td colspan="1" >
-
-		<button type="button" data-toggle="modal" data-target="#inventory_dialog" class="btn btn-primary">Add Inventory</button>
-
+	<td colspan="13"><h3>Issues</h3></td>
+	<td colspan="1">
+		<button type="button" data-toggle="modal" data-target="#issues_dialog" class="btn btn-primary">Add Issues</button>
 	</td>
 </tr>
 <tr>
 	<th>ID</th>
-	<th>Name</th>
-	<th>Label</th>
-	<th>Model Name</th>
-	<th>Model Number</th>
-	<th>Serial Code</th>
-	<th>PO Number</th>
-	<th>Date Accquired</th>
+	<th>Concern</th>
+	<th>Description</th>
+	<th>Module</th>
+	<th>Date Reported</th>
+	<th>Status</th>
+	<th>User</th>
+	<th>QA</th>
+	<th>CAS Reference No</th>
+	<th>Date Closed</th>
+	<th>Reason of Error</th>
 	<th>Remarks</th>
+	<th>Update Status</th>
 	<th width="130">Action</th>
 </tr>
 <?php 
 if (!empty($key) && isset($key)) {
-
-	$key_result = $inventory->searchData($key);
+	$key_result = $issues->searchData($key);
 	foreach($key_result as $k) {
 		extract($k);
 		echo "
 		<tr>
 			<td>$id</td>
-			<td>$name</td>
-			<td>$label</td>
-			<td>$model_name</td>
-			<td>$model_number</td>
-			<td>$serial_code</td>
-			<td>$po_no</td>
-			<td>$date_accquired</td>
+			<td>$issue_concern</td>
+			<td>$description</td>
+			<td>$module_location</td>
+			<td>$date_reported</td>
+			<td>$status</td>
+			<td>$user</td>
+			<td>$qa_in_charge</td>
+			<td>$cas_reference_no</td>
+			<td>$date_closed</td>
+			<td>$reason_of_error</td>
 			<td>$remarks</td>
+			<td>$update_status</td>
 			<td>
-				<button class='btn btn-danger' title='Update'><a href='updateInventory.php?id=$id' hover='update'><span class='glyphicon glyphicon-wrench'></a></button>&nbsp;&nbsp;
-				<button class='btn btn-danger' title='Delete'><a href='inventory.php?del_id=$id'><span class='glyphicon glyphicon-remove'></span></a></button>
+				<button class='btn btn-danger' title='Update'><a href='updateIssues.php?id=$id' hover='update'><span class='glyphicon glyphicon-wrench'></a></button>&nbsp;&nbsp;
+				<button class='btn btn-danger' title='Delete'><a href='issues.php?del_id=$id'><span class='glyphicon glyphicon-remove'></span></a></button>
 			</td>
 		</tr>
 		";
@@ -67,17 +72,21 @@ if (!empty($key) && isset($key)) {
 		echo "
 		<tr>
 			<td>$id</td>
-			<td>$name</td>
-			<td>$label</td>
-			<td>$model_name</td>
-			<td>$model_number</td>
-			<td>$serial_code</td>
-			<td>$po_no</td>
-			<td>$date_accquired</td>
+			<td>$issue_concern</td>
+			<td>$description</td>
+			<td>$module_location</td>
+			<td>$date_reported</td>
+			<td>$status</td>
+			<td>$user</td>
+			<td>$qa_in_charge</td>
+			<td>$cas_reference_no</td>
+			<td>$date_closed</td>
+			<td>$reason_of_error</td>
 			<td>$remarks</td>
+			<td>$update_status</td>
 			<td>
-				<button class='btn btn-danger' title='Update'><a href='updateInventory.php?id=$id' hover='update'><span class='glyphicon glyphicon-wrench'></a></button>&nbsp;&nbsp;
-				<button class='btn btn-danger' title='Delete'><a href='inventory.php?del_id=$id'><span class='glyphicon glyphicon-remove'></span></a></button>
+				<button class='btn btn-danger' title='Update'><a href='updateIssues.php?id=$id' hover='update'><span class='glyphicon glyphicon-wrench'></a></button>&nbsp;&nbsp;
+				<button class='btn btn-danger' title='Delete'><a href='issues.php?del_id=$id'><span class='glyphicon glyphicon-remove'></span></a></button>
 			</td>
 		</tr>
 		";
@@ -85,7 +94,7 @@ if (!empty($key) && isset($key)) {
 	if ($rows > 0) {
         ?>
         <tr>
-            <td colspan="10">
+            <td colspan="14">
                 <?php 
                 $total_no_of_pages = ceil($rows/5);
 
@@ -114,4 +123,4 @@ if (!empty($key) && isset($key)) {
             </tr></table></main><?php
         }
     } 
-    ?>
+?>

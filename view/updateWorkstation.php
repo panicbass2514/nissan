@@ -6,17 +6,17 @@
 		include_once($filename);
 	}
 
-	$obj = new Workstation;
+	$nissan = new NissanDatabase;
 	// Verify if the request is an update then the page will redirect to the parent module
 	if(isset($_REQUEST['update'])) {
 		extract($_REQUEST);
-		if($obj->updateData($id, $cpu_name, $employee, $blocked_sites, "workstation"))
+		if($nissan->updateData($id, $cpu_name, $employee, $blocked_sites, "workstation"))
 		 {
 			header("location:workstation.php?status=success");
 		}
 	}
 
-extract($obj->getById($_REQUEST['id'], "workstation"));	
+extract($nissan->getById($_REQUEST['id'], "workstation"));	
 echo @<<<show
 <div class="well div-center">
 <form class="form-group" action="updateWorkstation.php" method="post">
@@ -49,5 +49,5 @@ echo @<<<show
 </div>		
 </div>
 show;
-include('footer.php');
+
 ?>	

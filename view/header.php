@@ -54,8 +54,8 @@ ob_start();
                     </a>
                     <ul class="sub-menu">
                       <div class="dropdown-content">
-                        <li><a href="#">Subitem</a></li>
-                        <li><a href="#">Subitem</a></li>
+                        <li><a href="#">List</a></li>
+                        <li><a href="#">Users</a></li>
                       </div>
                     </ul>
                   </div>
@@ -67,8 +67,8 @@ ob_start();
                     </a>
                     <ul class="sub-menu">
                       <div class="dropdown-content">
-                        <li><a href="#">Subitem</a></li>
-                        <li><a href="#">Subitem</a></li>
+                        <li><a href="<?php echo "http://".$_SERVER['SERVER_NAME']?>/nissan/view/inventory.php">List</a></li>
+                        <li><a href="<?php echo "http://".$_SERVER['SERVER_NAME']?>/nissan/view/supplier.php">Suppliers</a></li>
                       </div>
                     </ul>
                   </div>
@@ -93,7 +93,6 @@ ob_start();
             <?php 
             $self = $_SERVER['PHP_SELF'];
             $searchClass = ($self == '/nissan/view/issues.php') ? "search-issues" : (($self == '/nissan/view/inventory.php') ? "search-inventory" : (($self == '/nissan/view/workstation.php') ? "search-workstation" : "search-nissan"));
-
             // echo $searchClass;
             ?>
               <div class='<?php echo "$searchClass"; ?>'>
@@ -109,4 +108,4 @@ ob_start();
             </div><!-- main-menu -->
           </header><!-- .masthead -->
           <!-- <main class="div-center "> -->
-          <table class="result well table-hover table-custom ">
+          <table class="result well table-hover table-custom table-bordered ">

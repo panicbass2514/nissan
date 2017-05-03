@@ -17,13 +17,11 @@ class Inventory {
 		}
 	}	
 
-
 	public function insertData($name, $label, $model_name, $model_number, $serial_code, $po_no, $date_accquired, $remarks, $table) {
 		$sql = "INSERT INTO $table 
 		SET name=:name, label=:label, model_name=:model_name, model_number=:model_number, serial_code=:serial_code, po_no=:po_no, date_accquired=:date_accquired, remarks=:remarks";
 		$q = $this->conn->prepare($sql);		
 		$q->execute(array(":name" => $name, ":label" => $label, ":model_name" => $model_name, ":model_number" => $model_number, ":serial_code" => $serial_code, ":po_no" => $po_no, ":date_accquired" => $date_accquired, ":remarks" => $remarks));
-
 		return true;
 	}
 
@@ -45,6 +43,5 @@ class Inventory {
 		$q = $this->conn->prepare($sql);
 		$q->execute(array(":id" => $id, ":name" => $name, ":label" => $label, ":model_name" => $model_name, ":model_number" => $model_number, ":serial_code" => $serial_code, ":po_no" => $po_no, ":date_accquired" => $date_accquired, ":remarks" => $remarks));
 		return true;	
-
 	}
 }
