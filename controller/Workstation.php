@@ -48,4 +48,16 @@ class Workstation {
 		return true;	
 
 	}
+
+	public function getDepartment($table) {
+
+		$sql = "SELECT * FROM $table";
+		$q = $this->conn->prepare($sql);
+		$q->execute();
+
+		while($r = $q->fetch(PDO::FETCH_ASSOC)) {
+			$data[] = $r;
+		}
+		return $data;
+	}
 }

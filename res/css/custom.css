@@ -131,7 +131,7 @@ Base styles
 	justify-content: space-between;
 }
 
-.search-workstation, .search-issues, .search-inventory, .search-nissan {
+.search-workstation, .search-issues, .search-inventory, .search-nissan, .search-employee {
 	/*margin-left: 1000px;*/
 	display: flex;
 	position: absolute; right: 0;

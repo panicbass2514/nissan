@@ -21,13 +21,12 @@ if(isset($_REQUEST['update'])) {
 	extract($_REQUEST);
 	if($workstation->updateData($id, $cpu_name, $employee, $blocked_sites, "workstation"))
 	{
-		header("location:workstation.php?status=success");
+		header("location:workstation.php");
 	} 
 }
 // Delete Data
 if (isset($_REQUEST['del_id'])) {
 	if ($nissan->deleteData($_REQUEST['del_id'], "workstation")) {
-		// echo "You Data Has Succecssfully Deleted";
 		header("location:workstation.php");
 	}
 }
@@ -39,11 +38,8 @@ if (isset($_REQUEST['del_id'])) {
 			<div class="modal-header">		
 			</div>
 			<div class="modal-body">
-				<!-- <form class="form-group" id="workstation_delete_form" method="POST"> -->
-				<!-- <input id="btn_confirm" type="submit" name="delete" value="Yes" class="btn btn-danger">	 -->
-				<a class="btn btn-danger btn-ok">Delete</a>
-				<button class="btn btn-danger" data-dismiss="modal">Cancel</button>
-				<!-- </form> -->
+				<a href="#" class="btn btn-danger btn-ok">Delete</a>
+				<a href="#" class="btn btn-danger" data-dismiss="modal">Cancel</a>
 			</div>
 		</div>
 	</div>
@@ -58,23 +54,25 @@ if (isset($_REQUEST['del_id'])) {
 			</div>
 			<div class="modal-body">
 				<form class="form-group" id="workstation_form" action="workstation.php" method="POST">
-
 					<table width="400" class="table-bordered table-custom">
+						<input type="hidden" name="id" value="">
 						<tr>
 							<th scope="row">CPU Name</th>
 							<td><input class="form-control" type="text" name="cpu_name" value=""></td>
 						</tr>
 						<tr>
 							<th scope="row">Employee</th>
-							<td><input class="form-control" type="text" name="employee" value="<?php $employee ?>"></td>
+							<td><input class="form-control" type="text" name="employee" value=""></td>
 						</tr>
 						<tr>
 							<th scope="row">Blocked Sites</th>
-							<td><input class="form-control" type="text" name="blocked_sites" value="<?php $blocked_sites ?>"></td>
+							<td><input class="form-control" type="text" name="blocked_sites" value=""></td>
 						</tr>
 						<tr>
-							<td><input type="submit" name="insert" value="Insert" class="btn btn-primary"></td>
-							<td><button class="btn btn-danger"><a href="workstation.php">Cancel</a></button></td>
+							<td id="td_update">
+								<input id="update_input" type="submit" name="insert" value="Insert" class="btn btn-primary">
+							</td>
+							<td><a class="btn btn-danger" href="workstation.php">Cancel</a></td>
 						</tr>
 					</table>
 				</form>
@@ -87,54 +85,16 @@ if (isset($_REQUEST['del_id'])) {
 </div>
 </div>
 
-
-
 <script>
 	/*Must apply only after HTML has loaded*/
 	$(document).ready(function () {
-		$("#workstation_form").on("submit", function(e) {
-			// var postData = $(this).serializeArray();
-			// var formURL = $(this).attr("action");
-			// $.ajax({
-			// 	url: formURL,
-			// 	type: "POST",
-			// 	data: postData,
-			// 	success: function(data, textStatus, varmess) {
-			// 		$('#contact_dialog .modal-header .modal-title').html("Result");
-			// 		$('contact_dialog .modal-body').html(data);
-			// 		$('#submitForm').remove();
-			// 	},
-			// 	error: function(varmess, status, error) {
-			// 		console.log(status + ": " + error);
-			// 	}
-			// });
-			// e.preventDefault();
 
-			$('#workstation_dialog .modal-header .modal-title').html("Success");
-			// $('contact_dialog .modal-body').html(data);
-			// $('#submitForm').remove();
-		});
-
-		// $("#submitForm").on('click', function() {
-		// 	$("#contact_form").submit();
-		// });
-
-		$('#workstation_delete_form').on('submit', function(e) {
-			$('#workstation_delete_form')
-		});
-
-
-		$('#button_delete').click(function() 
-		{
-			var idx = $(this).val();
-
-			$('.modal-header').val(idx);
+		$("#btn_update").on('click', function() {
+			$(".modal-title").html("Update Workstation");
 		});
 
 		$('#workstation_delete_form').on('show.bs.modal', function(e) {
 			$(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
 		});
 	});
-
-
 </script>

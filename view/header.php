@@ -26,6 +26,8 @@ ob_start();
       case '/nissan/view/workstation.php':
       echo "Workstation";
       break;
+      case '/nissan/view/employee.php':
+      echo "Employees";
       default:
       echo "Nissan Home";
       break;
@@ -76,12 +78,12 @@ ob_start();
                 <li>
                   <div class="dropdown">
                     <a class="dropbtn" href="<?php echo "http://".$_SERVER['SERVER_NAME']?>/nissan/view/workstation.php">
-                      Workstation
+                      Nissan
                     </a>
                     <ul class="sub-menu">
                       <div class="dropdown-content">
-                        <li><a href="#">Subitem</a></li>
-                        <li><a href="#">Subitem</a></li>
+                        <li><a href="<?php echo "http://".$_SERVER['SERVER_NAME']?>/nissan/view/workstation.php">Workstation</a></li>
+                        <li><a href="<?php echo "http://".$_SERVER['SERVER_NAME']?>/nissan/view/employee.php">Employees</a></li>
                       </div>
                     </ul>
                   </div>
@@ -92,7 +94,7 @@ ob_start();
             
             <?php 
             $self = $_SERVER['PHP_SELF'];
-            $searchClass = ($self == '/nissan/view/issues.php') ? "search-issues" : (($self == '/nissan/view/inventory.php') ? "search-inventory" : (($self == '/nissan/view/workstation.php') ? "search-workstation" : "search-nissan"));
+            $searchClass = ($self == '/nissan/view/issues.php') ? "search-issues" : (($self == '/nissan/view/inventory.php') ? "search-inventory" : (($self == '/nissan/view/workstation.php') ? "search-workstation"  : (($self == '/nissan/view/employee.php') ? "search-employee" : "search-nissan")));
             // echo $searchClass;
             ?>
               <div class='<?php echo "$searchClass"; ?>'>
@@ -107,5 +109,5 @@ ob_start();
               </div><!-- search-box -->
             </div><!-- main-menu -->
           </header><!-- .masthead -->
-          <!-- <main class="div-center "> -->
+          <main class="div-center ">
           <table class="result well table-hover table-custom table-bordered ">

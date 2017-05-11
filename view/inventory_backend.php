@@ -111,7 +111,7 @@ if (!empty($key) && isset($key)) {
                     echo "<a class='btn btn-primary' href='".$self."?page_no=".$total_no_of_pages."'>Last</a>";
                 }
                 ?></td>
-            </tr></table></main><?php
+            </tr></table><?php
         }
     } 
     ?>
