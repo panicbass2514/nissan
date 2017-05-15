@@ -8,6 +8,7 @@ ob_start();
   <meta charset="UTF-8">
   <link rel="icon" href="<?php echo "http://".$_SERVER['SERVER_NAME']?>/nissan/res/img/nissan_favicon.png">
   <link href="<?php echo "http://".$_SERVER['SERVER_NAME']?>/nissan/res/css/bootstrap.css" type="text/css" rel="stylesheet">
+  <link href="<?php echo "http://".$_SERVER['SERVER_NAME']?>/nissan/res/css/navbar-fixed-side.css" type="text/css" rel="stylesheet">
   <link href="<?php echo "http://".$_SERVER['SERVER_NAME']?>/nissan/res/css/custom.css" type="text/css" rel="stylesheet">
   <script type="text/javascript" src="<?php echo "http://".$_SERVER['SERVER_NAME']?>/nissan/res/js/jquery-3.2.0.min.js"></script>
   <script type="text/javascript" src="<?php echo "http://".$_SERVER['SERVER_NAME']?>/nissan/res/js/bootstrap.js"></script>
@@ -97,17 +98,22 @@ ob_start();
             $searchClass = ($self == '/nissan/view/issues.php') ? "search-issues" : (($self == '/nissan/view/inventory.php') ? "search-inventory" : (($self == '/nissan/view/workstation.php') ? "search-workstation"  : (($self == '/nissan/view/employee.php') ? "search-employee" : "search-nissan")));
             // echo $searchClass;
             ?>
-              <div class='<?php echo "$searchClass"; ?>'>
-                <form class="navbar-form" role="search">
-                  <div class="input-group add-on">
-                    <input class="form-control" placeholder="Search" name="srch-term" id="srch-term" type="text" autocomplete="off">     
-                    <div class="input-group-btn">
-                      <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
-                    </div>
+            <div class='<?php echo "$searchClass"; ?>'>
+              <form class="navbar-form" role="search">
+                <div class="input-group add-on">
+                  <input class="form-control" placeholder="Search" name="srch-term" id="srch-term" type="text" autocomplete="off">     
+                  <div class="input-group-btn">
+                    <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
                   </div>
-                </form>
-              </div><!-- search-box -->
-            </div><!-- main-menu -->
-          </header><!-- .masthead -->
-          <main class="div-center ">
+                </div>
+              </form>
+            </div><!-- search-box -->
+          </div><!-- main-menu -->
+        </header><!-- .masthead -->
+        <!-- <div class="col-sm-2 col-lg-2">
+          <nav class="navbar navbar-inverse navbar-fixed-side" id="navbar-side">
+ 
+          </nav>
+        </div> -->
+    
           <table class="result well table-hover table-custom table-bordered ">
