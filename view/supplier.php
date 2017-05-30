@@ -15,7 +15,7 @@ if (isset($_REQUEST['insert'])) {
 	$sup_types = "<pre>".implode(",\n",$sup_type)."</pre>";
 	if ($supplier->insertData($sup_types, $sup_name, $sup_address_1, $sup_address_2, $sup_zipcode, $sup_telephone, $sup_cphone, $sup_faxphone, $sup_contact_person, 'supplier')) {
 
-		header('location:supplier.php?status_insert=success');
+		header('location:supplier.php');
 	}
 }
 
@@ -35,6 +35,21 @@ if (isset($_REQUEST['del_id'])) {
 	}
 }
 ?>
+
+<!-- Modal for delete -->
+<div class="modal fade" id="supplier_delete_form" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header"></div>
+			<div class="modal-body">
+				<a href="#" class="btn btn-danger btn-ok">Delete</a>
+				<a href="#" class="btn btn-danger" data-dismiss="modal">Cancel</a>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Modal for add/update -->
 <div class="modal fade" id="supplier_dialog" role="dialog">
 	<div class="modal-dialog">
 		<div class="modal-content">
@@ -44,9 +59,10 @@ if (isset($_REQUEST['del_id'])) {
 			</div>
 			<div class="modal-body">
 				<form action="supplier.php" id="supplier_form" class="form-group" method="POST">
-					<table class="table-bordered table-custom" width="400">
+				<input type="hidden" name="id" value="">
+					<table class="table-custom" width="400">
 						<tr>
-							<th scope="row">Type</th>
+							<th>Type</th>
 							<td>
 								<select class="form-control" name="sup_type[]" multiple="multiple">
 									<option value="Computer Parts and Acesories">Computer Parts and Accessories</option>
@@ -55,35 +71,35 @@ if (isset($_REQUEST['del_id'])) {
 								</select>
 							</tr>
 							<tr>
-								<th scope="row">Name</th>
+								<th>Name</th>
 								<td><input class="form-control" type="text" name="sup_name" value=""></td>
 							</tr>
 							<tr>
-								<th scope="row">Address 1</th>
+								<th>Address 1</th>
 								<td><input class="form-control" type="text" name="sup_address_1" value=""></td>
 							</tr>
 							<tr>
-								<th scope="row">Address 2</th>
+								<th>Address 2</th>
 								<td><input class="form-control" type="text" name="sup_address_2" value=""></td>
 							</tr>
 							<tr>
-								<th scope="row">Zipcode</th>
+								<th>Zipcode</th>
 								<td><input class="form-control" type="text" name="sup_zipcode" value=""></td>
 							</tr>
 							<tr>
-								<th scope="row">Telephone</th>
+								<th>Telephone</th>
 								<td><input class="form-control" type="text" name="sup_telephone" value=""></td>
 							</tr>
 							<tr>
-								<th scope="row">Cellphone</th>
+								<th>Cellphone</th>
 								<td><input class="form-control" type="text" name="sup_cphone" value=""></td>
 							</tr>
 							<tr>
-								<th scope="row">Faxphone</th>
+								<th>Faxphone</th>
 								<td><input class="form-control" type="text" name="sup_faxphone" value=""></td>
 							</tr>
 							<tr>
-								<th scope="row">Contact Person</th>
+								<th>Contact Person</th>
 								<td><input class="form-control" type="text" name="sup_contact_person" value=""></td>
 							</tr>
 							<tr>
@@ -98,8 +114,12 @@ if (isset($_REQUEST['del_id'])) {
 	</div>
 	<script>
 		$(document).ready(function() {
-			$("#supplier_form").on("submit", function(e) {
-				$("#supplier_dialog .modal-header .modal-title").html("Success");
+			$('#button_delete').click(function() {
+				var idx = $(this).val();
+				$('.modal-header').val(idx);
+			});
+			$('#supplier_delete_form').on('show.bs.modal', function(e) {
+				$(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
 			});
 		});
 	</script>

@@ -12,18 +12,18 @@ if (!empty($_REQUEST['key']) && isset($_REQUEST['key'])) {
 if(isset($_REQUEST['insert'])) {
 	extract($_REQUEST);
 	$pass = substr(strrev($f_name), -1).''.$l_name;
-	if($employee->insertData(md5(strtolower($pass)), $f_name, $mi, $l_name, $dept, $status, $contact, "employee")) {
+	if($employee->insertData(md5(strtolower($pass)), $f_name, $mi, $l_name, $dept, $status, $contact, $email, "employee")) {
 		header("location:employee.php");
 	}
 }
 
 // Update Data Verification
-// if (isset($_REQUEST['update'])) {
-// 	extract($_REQUEST);
-// 	if ($employee->updateData($id, $pass, $f_name, $mi, $l_name, $dept, $status, $contact, "employee")) {
-// 		header("location:employee.php?status=success");
-// 	}
-// }
+if (isset($_REQUEST['update'])) {
+	extract($_REQUEST);
+	if ($employee->updateData($id, $pass, $f_name, $mi, $l_name, $dept, $status, $contact, $email, "employee")) {
+		header("location:employee.php");
+	}
+}
 
 // Delete Data
 if (isset($_REQUEST['del_id'])) {
@@ -33,20 +33,20 @@ if (isset($_REQUEST['del_id'])) {
 }
 ?>
 
+<!-- Modal for delete -->
 <div class="modal fade" id="employee_delete_form" role="dialog">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<div class="modal-header"> Are you sure you want to delete this employee
-			</div>
+			<div class="modal-header"></div>
 			<div class="modal-body">
 				<a href="#" class="btn btn-danger btn-ok">Delete</a>
-				<button class="btn btn-danger" data-dismiss="modal">Cancel</button>
+				<a href="#" class="btn btn-danger" data-dismiss="modal">Cancel</a>
 			</div>
 		</div>
 	</div>
 </div>
 
-
+<!-- Modal for add/update -->
 <div class="modal fade" id="employee_dialog" role="dialog">
 	<div class="modal-dialog">
 		<div class="modal-content">
@@ -56,37 +56,38 @@ if (isset($_REQUEST['del_id'])) {
 			</div>
 			<div class="modal-body">
 				<form class="form-group" id="employee_form" action="employee.php" method="POST">
-
-					<table width="400" class="table-bordered table-custom">
+					<input type="hidden" name="id" value="">
+					<input type="hidden" name="pass" value="">
+					<table width="400" class="table-custom">
 						<tr>
-							<th scope="row">First Name</th>
+							<th>First Name</th>
 							<td><input class="form-control" type="text" name="f_name" value=""></td>
 						</tr>
 						<tr>
-							<th scope="row">MI</th>
+							<th>MI</th>
 							<td><input class="form-control" type="text" name="mi" value=""></td>
 						</tr>
 						<tr>
-							<th scope="row">Last Name</th>
+							<th>Last Name</th>
 							<td><input class="form-control" type="text" name="l_name" value=""></td>
 						</tr>
 						<tr>
-							<th scope="row">Department</th>
+							<th>Department</th>
 							<td>
 								<?php 
 								$department = $employee->getDepartment("department");
-								echo '<select class="form-control" name="dept">
+								echo '<select id="myselect" class="form-control" name="dept">
 								<option value="0">Select Department</option>';
 								foreach($department as $d) {
 									extract($d);
-									echo "<option value='$id'>$name</option>";
+									echo "<option  value='$id'>$name</option>";
 								}
 								echo '</select>';
 								?>
 							</td>
 						</tr>
 						<tr>
-							<th scope="row">Status</th>
+							<th>Status</th>
 							<td>
 								<select class="form-control" name="status" id="#">
 									<option value="1">Active</option>
@@ -95,28 +96,32 @@ if (isset($_REQUEST['del_id'])) {
 							</td>
 						</tr>
 						<tr>
-							<th scope="row">Contact</th>
+							<th>Contact</th>
 							<td><input class="form-control" type="text" name="contact" value=""></td>
 						</tr>
 						<tr>
-							<td><input type="submit" name="insert" value="Insert" class="btn btn-primary"></td>
-							<td><button class="btn btn-danger"><a href="employee.php">Cancel</a></button></td>
+							<th>Email</th>
+							<td><input class="form-control" type="text" name="email" value=""></td>
 						</tr>
-					</table>
-				</form>
+						<tr>
+							<td id="td_update">
+								<input type="submit" name="insert" value="Insert" class="btn btn-primary"></td>
+								<td><button class="btn btn-danger"><a href="employee.php">Cancel</a></button></td>
+							</tr>
+						</table>
+					</form>
+				</div>
 			</div>
 		</div>
 	</div>
-</div>
-<script>
-	/*Must apply only after HTML has loaded*/
-	$(document).ready(function () {
-		$("#employee_form").on("submit", function(e) {
-			$('#employee_dialog .modal-header .modal-title').html("Success");
-		});
-		$('#employee_delete_form').on('submit', function(e) {
-			$('#employee_delete_form')
-		});
+	<script>
+		/*Must apply only after HTML has loaded*/
+		$(document).ready(function () {
+
+		// $("#btn_update").on('click', function() {
+		// 	(".modal-title").html("Update Employee");
+		// });
+
 		$('#button_delete').click(function() 
 		{
 			var idx = $(this).val();

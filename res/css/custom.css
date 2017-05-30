@@ -72,7 +72,7 @@ body {
 Header styles minus menu
 --------------------------------------------------------------*/
 .masthead {
-	background: #c0392b;
+	background: #262626;
 }
 
 .site-title {
@@ -117,12 +117,18 @@ Base styles
 .site-title {
 	margin-bottom: 0;
 }
-
+/*Main Menu*/
 .main-menu {
-	
 	color: white;
-	background: hsl(0, 0%, 15%);
-	display: flex;
+	background: #e74c3c;
+	display: flex;                  
+}
+
+.menu ul {
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+	background: #e74c3c;
 }
 
 .nav-mixed {
@@ -131,7 +137,7 @@ Base styles
 	justify-content: space-between;
 }
 
-.search-workstation, .search-issues, .search-inventory, .search-nissan, .search-employee {
+.search-workstation, .search-issues, .search-inventory, .search-nissan, .search-employee, .search-supplier {
 	/*margin-left: 1000px;*/
 	display: flex;
 	position: absolute; right: 0;
@@ -150,12 +156,7 @@ Base styles
 /*--------------------------------------------------------------
 Base styles that apply to all menu items
 --------------------------------------------------------------*/
-.menu ul {
-	list-style-type: none;
-	padding: 0;
-	margin: 0;
-	background: hsl(0, 0%, 15%);
-}
+
 
 .menu li a {
 	display: block;
@@ -204,8 +205,21 @@ Styles for mixed menu (drop-down + social)
 }
 .table-custom {
 	margin: auto;
+	border: 1px solid #ddd;
+	font-size: 12px;
+
 }
 
+
+.table-custom th, .table-custom tr, .table-custom td {
+	border: 1px solid #ddd;
+}
+
+.table-custom th {
+
+	background: #e74c3c;
+	color: #fff;
+}
 .dropdown {
 	position: relative;
 	display: inline-block;
@@ -238,20 +252,120 @@ Styles for mixed menu (drop-down + social)
 }
 
 pre{
-    display: block;
-    font-family: inherit;
-    padding: 9.5px;
-    margin: 0 0 10px;
-    font-size: 13px;
-    line-height: 1.42857143;
-    color: #333;
-    word-break: break-all;
-    word-wrap: break-word;
-    background-color: #f5f5f5;
-    border: none;
-    border-radius: 4px;
+	display: block;
+	font-family: inherit;
+	padding: 9.5px;
+	margin: 0 0 10px;
+	font-size: 13px;
+	line-height: 1.42857143;
+	color: #333;
+	word-break: break-all;
+	word-wrap: break-word;
+	background-color: #f5f5f5;
+	border: none;
+	border-radius: 4px;
+
 }
 
-#navbar-side {
-	background: #c0392b;
+
+
+.pdsa-sn-wrapper {
+	position: absolute;
+	left: 0em;
+	width: 10em;
+	height: 100%;
+	background: #262626;
+	transition: left 0.3s linear;
+	-moz-transition: left 0.3s linear;
+	-webkit-transition: left 0.3s linear;
+
 }
+
+.pdsa-sn-wrapper ul {
+	width: 11em;
+	list-style: none;
+	margin-top: 2em;
+	
+	padding: 0em;
+
+}
+
+.pdsa-sn-wrapper li {
+	border-bottom: 1px solid #ecf0f1;
+
+}
+
+
+.pdsa-sn-wrapper ul li,
+.pdsa-sn-wrapper ul li ul li {
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+
+}
+
+.pdsa-sn-wrapper ul li a,
+.pdsa-sn-wrapper ul li ul li a {
+	padding: .5em;
+
+}
+
+.pdsa-sn-wrapper ul li a:active,
+.pdsa-sn-wrapper ul li a:focus,
+.pdsa-sn-wrapper ul li ul li a:active,
+.pdsa-sn-wrapper ul li ul li a:focus {
+	text-decoration: none;
+	outline: none;
+	color: white;
+}
+.pdsa-sn-wrapper ul .pdsa-sn-brand {
+	margin-left: -.5em;
+	font-size: large;
+	color: white;
+}
+
+.pdsa-sn-wrapper ul .pdsa-sn-brand a {
+	color: white;
+}
+
+.pdsa-sn-wrapper ul .pdsa-sn-brand a:hover {
+	color: lightblue;
+	background: none;
+}
+
+
+/* Style for 2nd level */
+.pdsa-sn-wrapper ul li ul {
+	list-style: none;
+	margin-top: 1em;
+	margin-left: 1em;
+}
+
+/* Add <span> for sm, md, lg breakpoints */
+.pdsa-sn-wrapper ul li a span {
+	margin-top: -1em;
+	margin-bottom: -1em;
+	margin-left: 1em;
+	padding-top: -1em;
+	padding-bottom: -1em;
+}
+
+
+.body-content {
+	margin-left: 10em;
+	height: 100%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

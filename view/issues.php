@@ -11,26 +11,42 @@ if (!empty($_REQUEST['key']) && isset($_REQUEST['key'])) {
 // Insert Data Verification
 if (isset($_REQUEST['insert'])) {
 	extract($_REQUEST);
-	if ($issues->insertData($issue_concern, $description, $module_location, $date_reported, $status, $user, $qa_in_charge, $cas_reference_no, $date_closed, $reason_of_error, $remarks, $update_status, "issues")) {
-		header("location:issues.php?status_insert=success");
+	if ($issues->insertData($issue_concern, $description, $module_location, $date_reported, $status, $user, $qa_in_charge, $cas_reference_no, $date_closed, $reason_of_error, $remarks, "issues")) {
+		header("location:issues.php");
 	}
 }
 
-/*if (isset($_REQUEST['status'])) {
-	echo "Your Data Successfully Updated";
+// Update Data Verification
+if (isset($_REQUEST['update'])) {
+	extract($_REQUEST);
+	if ($issues->updateData($id, $issue_concern, $description, $module_location, $date_reported, $status, $user, $qa_in_charge, $cas_reference_no, $date_closed, $reason_of_error, $remarks, "issues")) {
+		header("location:issues.php");
+	}
 }
 
-if (isset($_REQUEST['status_insert'])) {
-	echo "You Data Successfully Inserted";
-}
-
+// Delete Data
 if (isset($_REQUEST['del_id'])) {
-	if ($obj->deleteData($_REQUEST['del_id'], "issues")) {
-		echo "You Data Has Succecssfully Deleted";
+	if ($nissan->deleteData($_REQUEST['del_id'], "issues")) {
+		header("location:issues.php");
 	}
-}*/
+}
 ?>
-<div class="modal fade" id="issues_dialog" role="dialog">
+
+<!-- Modal for delete -->
+<div class="modal fade" id="issue_delete_form" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header"></div>
+			<div class="modal-body">
+				<a href="#" class="btn btn-danger btn-ok">Delete</a>
+				<a href="#" class="btn btn-danger" data-dismiss="modal">Cancel</a>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Modal for udpate -->
+<div class="modal fade" id="issue_dialog" role="dialog">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -39,58 +55,65 @@ if (isset($_REQUEST['del_id'])) {
 			</div>
 			<div class="modal-body">
 				<form class="form-group" id="issues_form" action="issues.php" method="POST">
-
+					<input type="hidden" name="id" value="">
 					<table width="400" class="table-bordered table-custom">
 						<tr>
-							<th scope="row">Issue Concern</th>
-							<td><input class="form-control" type="text" name="issue_concern" value="<?php $issue_concern ?>"></td>
+							<th>Issue Concern</th>
+							<td><input class="form-control" type="text" name="issue_concern" value=""></td>
 						</tr>
 						<tr>
-							<th scope="row">Description</th>
-							<td><input class="form-control"  type="text" name="description" value="<?php $description ?>"></td>
+							<th>Description</th>
+
+							<td><textarea class="form-control" name="description" rows="3"></textarea></td>
 						</tr>
 						<tr>
-							<th scope="row">Module Location</th>
-							<td><input class="form-control"  type="text" name="module_location" value="<?php $module_location ?>"></td>
+							<th>Module Location</th>
+							<td>
+								<?php 
+									$module_location = $issues->getModule("eric_module");
+									echo '<select id="myselect" class="form-control" name="module_location"><option value="11">Select Module</option>';
+										foreach($module_location as $m) {
+											extract($m);
+											echo "<option value='$id'>$module</option>";
+										}
+										echo '</select>';
+								 ?>
+							</td>
 						</tr>
 						<tr>
-							<th scope="row">Date Reported</th>
-							<td><input class="form-control"  type="date" name="date_reported" value="<?php $date_reported ?>"></td>
+							<th>Date Reported</th>
+							<td><input class="form-control"  type="date" name="date_reported" value=""></td>
 						</tr>
 						<tr>
-							<th scope="row">Status</th>
-							<td><input class="form-control"  type="text" name="status" value="<?php $status ?>"></td>
+							<th>Status</th>
+							<td><input class="form-control"  type="text" name="status" value=""></td>
 						</tr>
 						<tr>
-							<th scope="row">User</th>
-							<td><input class="form-control"  type="text" name="user" value="<?php $user ?>"></td>
+							<th>User</th>
+							<td><input class="form-control"  type="text" name="user" value=""></td>
 						</tr>
 						<tr>
-							<th scope="row">QA in Charge</th>
-							<td><input class="form-control"  type="text" name="qa_in_charge" value="<?php $qa_in_charge ?>"></td>
+							<th>QA in Charge</th>
+							<td><input class="form-control"  type="text" name="qa_in_charge" value=""></td>
 						</tr>
 						<tr>
-							<th scope="row">CAS Reference No</th>
-							<td><input class="form-control"  type="text" name="cas_reference_no" value="<?php $cas_reference_no ?>"></td>
+							<th>CAS Reference No</th>
+							<td><input class="form-control"  type="text" name="cas_reference_no" value=""></td>
 						</tr>
 						<tr>
-							<th scope="row">Date Closed</th>
-							<td><input class="form-control"  type="date" name="date_closed" value="<?php $date_closed ?>"></td>
+							<th>Date Closed</th>
+							<td><input class="form-control"  type="date" name="date_closed" value=""></td>
 						</tr>
 						<tr>
-							<th scope="row">Reason of Error</th>
-							<td><input class="form-control"  type="text" name="reason_of_error" value="<?php $reason_of_error ?>"></td>
+							<th>Reason of Error</th>
+							<td><input class="form-control"  type="text" name="reason_of_error" value=""></td>
 						</tr>
 						<tr>
-							<th scope="row">Remarks</th>
-							<td><input class="form-control"  type="text" name="remarks" value="<?php $remarks ?>"></td>
+							<th>Remarks</th>
+							<td><textarea class="form-control" name="remarks" rows="3" value=""></textarea></td>
 						</tr>
 						<tr>
-							<th scope="row">Update Status</th>
-							<td><input class="form-control"  type="text" name="update_status" value="<?php $update_status ?>"></td>
-						</tr>
-						<tr>
-							<td><input type="submit" name="insert" value="Insert" class="btn btn-primary"></td>
+							<td id="td_update"><input type="submit" name="insert" value="Insert" class="btn btn-primary"></td>
 							<td><button class="btn btn-danger"><a href="issues.php">Cancel</a></button></td>
 						</tr>
 					</table>

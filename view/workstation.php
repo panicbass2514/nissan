@@ -32,6 +32,7 @@ if (isset($_REQUEST['del_id'])) {
 }
 ?>
 
+
 <div class="modal fade" id="workstation_delete_form" role="dialog">
 	<div class="modal-dialog">
 		<div class="modal-content">
@@ -54,8 +55,9 @@ if (isset($_REQUEST['del_id'])) {
 			</div>
 			<div class="modal-body">
 				<form class="form-group" id="workstation_form" action="workstation.php" method="POST">
+					<input type="hidden" name="id" value="">
 					<table width="400" class="table-bordered table-custom">
-						<input type="hidden" name="id" value="">
+						
 						<tr>
 							<th scope="row">CPU Name</th>
 							<td><input class="form-control" type="text" name="cpu_name" value=""></td>

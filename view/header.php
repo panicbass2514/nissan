@@ -36,7 +36,7 @@ ob_start();
     ?></title>
   </head>
   <body>
-    <div class="outer-wrap">
+    <main class="#">
       <header class="masthead">
         <div class="centered">
           <div class="site-title">
@@ -90,30 +90,104 @@ ob_start();
                   </div>
                 </li>
               </ul>
-            </div><!-- .mixed-menu -->
-            <!-- Search Box with AJAX Autocomplete Feature -->
-            
-            <?php 
-            $self = $_SERVER['PHP_SELF'];
-            $searchClass = ($self == '/nissan/view/issues.php') ? "search-issues" : (($self == '/nissan/view/inventory.php') ? "search-inventory" : (($self == '/nissan/view/workstation.php') ? "search-workstation"  : (($self == '/nissan/view/employee.php') ? "search-employee" : "search-nissan")));
-            // echo $searchClass;
-            ?>
-            <div class='<?php echo "$searchClass"; ?>'>
-              <form class="navbar-form" role="search">
-                <div class="input-group add-on">
-                  <input class="form-control" placeholder="Search" name="srch-term" id="srch-term" type="text" autocomplete="off">     
-                  <div class="input-group-btn">
-                    <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
-                  </div>
+            </nav>
+          </div><!-- .mixed-menu -->
+          <!-- Search Box with AJAX Autocomplete Feature -->
+          
+          <?php 
+          $self = $_SERVER['PHP_SELF'];
+          $searchClass = ($self == '/nissan/view/issues.php') ? "search-issues" : (($self == '/nissan/view/inventory.php') ? "search-inventory" : (($self == '/nissan/view/workstation.php') ? "search-workstation"  : (($self == '/nissan/view/employee.php') ? "search-employee" : (($self == '/nissan/view/supplier.php') ? "search-supplier" : "search-nissan"))));
+          ?>
+          <div class='<?php echo "$searchClass"; ?>'>
+            <form class="navbar-form" role="search">
+              <div class="input-group add-on">
+                <input class="form-control" placeholder="Search" name="srch-term" id="srch-term" type="text" autocomplete="off">     
+                <div class="input-group-btn">
+                  <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
                 </div>
-              </form>
-            </div><!-- search-box -->
-          </div><!-- main-menu -->
-        </header><!-- .masthead -->
-        <!-- <div class="col-sm-2 col-lg-2">
-          <nav class="navbar navbar-inverse navbar-fixed-side" id="navbar-side">
- 
-          </nav>
-        </div> -->
-    
-          <table class="result well table-hover table-custom table-bordered ">
+              </div>
+            </form>
+          </div><!-- search-box -->
+        </div><!-- main-menu -->
+      </header><!-- .masthead -->
+      <!-- Side Nav -->
+      <section class="pdsa-sn-wrapper">
+        <ul id="sideNavParent">
+          <li>
+            <a href="Default.html">
+              <span class="hidden-xs">Home</span>
+              <i class="glyphicon glyphicon-home visible-xs"></i>
+            </a>
+          </li>
+          <!-- ERIC -->
+          <li>
+            <a href="#"
+            data-toggle="collapse"
+            data-target="#ulERIC">
+            <span class="hidden-xs">
+              ERIC&nbsp;<b class="caret"></b>
+            </span>
+            <i class="glyphicon glyphicon-globe visible-xs"></i>
+          </a>
+          <div class="hidden-xs">
+            <ul id="ulERIC" class="collapse" data-parent="#sideNavParent">
+              <li>
+                <a href="#">Issues</a>
+              </li>
+              <li>
+                <a href="#">Jupiter Systems</a>
+              </li>
+              <li>
+                <a href="#">Updates</a>
+              </li>
+            </ul>
+          </div>
+        </li>
+        <!-- Inventory -->
+        <li>
+          <a href="#"
+          data-toggle="collapse"
+          data-target="#ulInventory">
+          <span class="hidden-xs">
+            Inventory&nbsp;<b class="caret"></b>
+          </span>
+          <i class="glyphicon glyphicon-list-alt visible-xs"></i>
+        </a>
+        <div class="hidden-xs">
+          <ul id="ulInventory" class="collapse" data-parent="#sideNavParent">
+            <li>
+              <a href="#">List</a>
+            </li>
+            <li>
+              <a href="#">Suppliers</a>
+            </li>
+          </ul>
+        </div>
+      </li>
+      <!--  Nissan -->
+      <li>
+        <a href="#"
+        data-toggle="collapse"
+        data-target="#ulNissan">
+        <span class="hidden-xs">
+          Nissan&nbsp;<b class="caret"></b>
+        </span>
+        <i class="glyphicon glyphicon-list-alt visible-xs"></i>
+      </a>
+      <div class="hidden-xs">
+        <ul id="ulNissan" class="collapse" data-parent="#sideNavParent">
+          <li>
+            <a href="#">Employees</a>
+          </li>
+          <li>
+            <a href="#">Workstations</a>
+          </li>
+        </ul>
+      </div>
+    </li>
+  </ul>
+</section>
+<!-- Main View -->
+<section class="body-content">
+  <table class="result well table-hover table-custom ">
+

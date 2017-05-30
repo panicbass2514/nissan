@@ -17,12 +17,12 @@ class Employee {
 		}
 	}
 
-	public function insertData($pass, $f_name, $mi, $l_name, $dept, $status, $contact, $table) {
+	public function insertData($pass, $f_name, $mi, $l_name, $dept, $status, $contact, $email, $table) {
 
 		$sql = "INSERT INTO $table
-		SET pass=:pass, f_name=:f_name, mi=:mi, l_name=:l_name, dept=:dept, status=:status, contact=:contact";
+		SET pass=:pass, f_name=:f_name, mi=:mi, l_name=:l_name, dept=:dept, status=:status, contact=:contact, email=:email";
 		$q = $this->conn->prepare($sql);
-		$q->execute(array(":pass" => $pass, ":f_name" => $f_name, ":mi" => $mi, ":l_name" => $l_name, ":dept" => $dept, ":status" => $status, ":contact" => $contact));
+		$q->execute(array(":pass" => $pass, ":f_name" => $f_name, ":mi" => $mi, ":l_name" => $l_name, ":dept" => $dept, ":status" => $status, ":contact" => $contact, ":email" => $email));
 		if ($q) {
 			return true;
 		}
@@ -40,12 +40,12 @@ class Employee {
 		return $data;
 	}
 
-	public function updateData($id, $pass, $f_name, $mi, $l_name, $dept, $status, $contact, $table) {
+	public function updateData($id, $pass, $f_name, $mi, $l_name, $dept, $status, $contact, $email, $table) {
 		$sql = "UPDATE $table
-		SET pass=:pass, f_name=:f_name, mi=:mi, l_name=:l_name, dept=:dept, status=:status, contact=:contact
+		SET pass=:pass, f_name=:f_name, mi=:mi, l_name=:l_name, dept=:dept, status=:status, contact=:contact, email=:email
 		WHERE id=:id";
 		$q = $this->conn->prepare($sql);
-		$q->execute(array(":id" => $id, ":f_name" => $f_name, ":mi" => $mi, ":l_name" => $l_name, ":status" => $status, ":contact" => $contact));
+		$q->execute(array(":id" => $id, ":pass" => $pass, ":f_name" => $f_name, ":mi" => $mi, ":l_name" => $l_name, ":dept" => $dept, ":status" => $status, ":contact" => $contact, ":email" => $email));
 		return true;
 	}
 

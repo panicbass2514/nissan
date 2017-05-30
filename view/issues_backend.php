@@ -18,12 +18,12 @@ if (isset($_REQUEST['key']) && !empty($_REQUEST['key'])) {
 }
 ?>
 <tr>
-	<td colspan="13"><h3>Issues</h3></td>
+	<td colspan="12"><h3>Issues</h3></td>
 	<td colspan="1">
 		<button type="button" data-toggle="modal" data-target="#issues_dialog" class="btn btn-primary">Add Issues</button>
 	</td>
 </tr>
-<tr>
+<tr class="table-custom-header">
 	<th>ID</th>
 	<th>Concern</th>
 	<th>Description</th>
@@ -36,7 +36,6 @@ if (isset($_REQUEST['key']) && !empty($_REQUEST['key'])) {
 	<th>Date Closed</th>
 	<th>Reason of Error</th>
 	<th>Remarks</th>
-	<th>Update Status</th>
 	<th width="130">Action</th>
 </tr>
 <?php 
@@ -58,10 +57,9 @@ if (!empty($key) && isset($key)) {
 			<td>$date_closed</td>
 			<td>$reason_of_error</td>
 			<td>$remarks</td>
-			<td>$update_status</td>
 			<td>
-				<button class='btn btn-danger' title='Update'><a href='updateIssues.php?id=$id' hover='update'><span class='glyphicon glyphicon-wrench'></a></button>&nbsp;&nbsp;
-				<button class='btn btn-danger' title='Delete'><a href='issues.php?del_id=$id'><span class='glyphicon glyphicon-remove'></span></a></button>
+				<button onclick='issueUpdate(\"$id\", \"$issue_concern\", \"$description\", \"$module_location\", \"$date_reported\", \"$status\", \"$user\", \"$qa_in_charge\", \"$cas_reference_no\", \"$date_closed\", \"$reason_of_error\", \"$remarks\")' id='btn_update' data-toggle='modal' data-target='#issue_dialog' class='btn btn-danger'><span class='glyphicon glyphicon-wrench'></span></button>&nbsp;&nbsp;
+				<button onclick='issueDelete(\"$issue_concern\")' id='btn_delete' class='btn btn-danger' data-href='/nissan/view/issues.php?del_id=$id' data-toggle='modal' data-target='#issue_delete_form'><span class='glyphicon glyphicon-remove'></span></button> 
 			</td>
 		</tr>
 		";
@@ -83,10 +81,9 @@ if (!empty($key) && isset($key)) {
 			<td>$date_closed</td>
 			<td>$reason_of_error</td>
 			<td>$remarks</td>
-			<td>$update_status</td>
 			<td>
-				<button class='btn btn-danger' title='Update'><a href='updateIssues.php?id=$id' hover='update'><span class='glyphicon glyphicon-wrench'></a></button>&nbsp;&nbsp;
-				<button class='btn btn-danger' title='Delete'><a href='issues.php?del_id=$id'><span class='glyphicon glyphicon-remove'></span></a></button>
+				<button onclick='issueUpdate(\"$id\", \"$issue_concern\", \"$description\", \"$module_location\", \"$date_reported\", \"$status\", \"$user\", \"$qa_in_charge\", \"$cas_reference_no\", \"$date_closed\", \"$reason_of_error\", \"$remarks\")' id='btn_update' data-toggle='modal' data-target='#issue_dialog' class='btn btn-danger'><span class='glyphicon glyphicon-wrench'></span></button>&nbsp;&nbsp;
+				<button onclick='issueDelete(\"$issue_concern\")' id='btn_delete' class='btn btn-danger' data-href='/nissan/view/issues.php?del_id=$id' data-toggle='modal' data-target='#issue_delete_form'><span class='glyphicon glyphicon-remove'></span></button> 
 			</td>
 		</tr>
 		";
@@ -120,7 +117,35 @@ if (!empty($key) && isset($key)) {
 					echo "<a class='btn btn-primary' href='".$self."?page_no=".$total_no_of_pages."'>Last</a>";
 				}
 				?></td>
-			</tr></table></main><?php
-		}
-	} 
-	?>
+			</tr>
+		</table>
+	</section>
+	<?php
+}
+} 
+?>
+</main>
+<script>
+	
+	function issueUpdate(id, issue_concern, description, module_location, date_reported, status, user, qa_in_charge, cas_reference_no, date_closed, reason_of_error, remarks) {
+
+		$('.modal-title').html("Update Issue");
+		$('#td_update').html("<input type='submit' name='update' value='Update' class='btn btn-primary'/>");
+		$('input[name="id"]').val(id);
+        $('input[name="issue_concern"]').val(issue_concern);
+        $('textarea[name="description"]').val(description);
+        $('select[name="module_location"]').val(module_location);
+        $('input[name="date_reported]').val(date_reported);
+        $('input[name="status"]').val(status);
+        $('input[name="user"]').val(user);
+        $('input[name="qa_in_charge"]').val(qa_in_charge);
+        $('input[name="cas_reference_no"]').val(cas_reference_no);
+        $('input[name="date_reported"]').val(date_reported);
+        $('input[name="reason_of_error"]').val(reason_of_error);
+        $('textarea[name="remarks"]').val(remarks);
+	}
+
+	function issueDelete(issue_concern) {
+		$('.modal-header').html("<h4 style='text-align: center'>Are you sure you want to delete '"+issue_concern+"'</h4>");
+	}
+</script>
