@@ -118,18 +118,17 @@ if (isset($_REQUEST['del_id'])) {
 		/*Must apply only after HTML has loaded*/
 		$(document).ready(function () {
 
-		// $("#btn_update").on('click', function() {
-		// 	(".modal-title").html("Update Employee");
+		// $('#button_delete').click(function() 
+		// {
+		// 	var idx = $(this).val();
+
+		// 	$('.modal-header').val(idx);
 		// });
 
-		$('#button_delete').click(function() 
-		{
-			var idx = $(this).val();
-
-			$('.modal-header').val(idx);
-		});
 		$('#employee_delete_form').on('show.bs.modal', function(e) {
 			$(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
 		});
+
+		
 	});
 </script>

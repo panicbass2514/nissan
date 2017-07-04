@@ -29,6 +29,27 @@ class Employee {
 		
 	}
 
+	public function login_detail($user_id, $login_date) {
+		$sql = "INSERT INTO employee_logs
+		SET employee_id = :employee_id, log_in = :log_in";
+		$q = $this->conn->prepare($sql);
+		$q->execute(array(":employee_id" => $user_id, ":log_in" => $login_date));
+		if ($q) {
+			return true;
+		}
+	}
+
+	public function logout_detail($user_id, $logout_date) {
+		$sql = "UPDATE employee_logs
+		SET log_out = :log_out
+		WHERE employee_id = :employee_id
+		ORDER BY log_in DESC
+		LIMIT 1";
+		$q = $this->conn->prepare($sql);
+		$q->execute(array(':log_out' => $logout_date, ':employee_id' => $user_id));
+		return true;
+	}
+
 	public function searchData($condition) {
 		$sql = "SELECT * FROM employee WHERE f_name LIKE ?";
 		$q = $this->conn->prepare($sql);
@@ -61,12 +82,44 @@ class Employee {
 		return $data;
 	}
 
+	public function login($email, $pass) {
+		$sql = "SELECT * FROM employee WHERE email = :email AND pass = :pass";
+		$q = $this->conn->prepare($sql);
+
+		$q->execute(array(':email' => $email, ':pass' => $pass));
+
+		while($r = $q->fetch(PDO::FETCH_ASSOC)) {
+			$data[] = $r;
+		}
+
+		$count = $q->rowCount();
+
+		@$result = array($data, $count);
+
+
+		return $result;
+	}
+
+
+	public function getEmployee($id) {
+
+		$sql = "SELECT * FROM employee WHERE id = :id";
+		$q = $this->conn->prepare($sql);
+		$q->execute(array(':id' => $id));
+
+		while($r = $q->fetch(PDO::FETCH_ASSOC)) {
+			$data[] = $r;
+		}
+
+		return $data;
+	}
+
 	public function showData($table, $records_per_page = 5) {
 		$start = 0;
 		if (isset($_GET['page_no'])) {
 			$start = ($_GET['page_no'] - 1) * $records_per_page;
 		}
-		//SELECT employee.*, department.name FROM $table JOIN department ON employee.dept = department.id
+
 		$sql = "SELECT employee.*, department.name AS 'department' FROM $table JOIN department ON employee.dept = department.id LIMIT $start, $records_per_page";
 
 		$q = $this->conn->query($sql) or die("Failed!");
@@ -76,4 +129,25 @@ class Employee {
 		}
 		return $data;
 	}
+
+	public function sortData($condition, $records_per_page = 5) {
+		$start = 0;
+
+		if (isset($_GET['page_no'])) {
+			$start = ($_GET['page_no'] - 1) * $records_per_page;
+		}
+		
+		$sql = "SELECT * FROM employee ORDER BY $condition LIMIT $start, $records_per_page";
+
+		$q = $this->conn->query($sql) or die("Failed!");
+
+
+		while($r = $q->fetch(PDO::FETCH_ASSOC)) {
+			$data[] = $r;
+		}
+		return $data;
+
+	}
+
+
 }

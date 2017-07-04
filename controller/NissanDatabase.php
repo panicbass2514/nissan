@@ -1,4 +1,4 @@
-<?php 
+ <?php 
 
 class NissanDatabase {
 
@@ -60,6 +60,7 @@ class NissanDatabase {
 
 		return true;
 	}
+
 
 }
 ?>

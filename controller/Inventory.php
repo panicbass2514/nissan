@@ -36,6 +36,21 @@ class Inventory {
 		return $data;
 	}
 
+	public function getInventory($table) {
+		$sql = "SELECT * FROM $table";
+
+		$q = $this->conn->query($sql) or die("Failed!");
+
+		while($r = $q->fetch(PDO::FETCH_ASSOC)) {
+			$data[] = $r;
+
+			$json_data = json_encode($data);
+		}
+
+		return $json_data;
+  
+	}
+
 	public function updateData($id, $name, $label, $model_name, $model_number, $serial_code, $po_no, $date_accquired, $remarks, $table) {
 		$sql = "UPDATE $table
 		SET name=:name, label=:label, model_name=:model_name, model_number=:model_number, serial_code=:serial_code, po_no=:po_no, date_accquired=:date_accquired, remarks=:remarks

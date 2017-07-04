@@ -74,4 +74,22 @@ class Issues {
 		}
 		return $data;
 	}
+
+	public function sortData($condition, $records_per_page = 5) {
+		$start = 0;
+
+		if (isset($_GET['page_no'])) {
+			$start = ($_GET['page_no'] - 1) * $records_per_page;
+		}
+
+		$sql = "SELECT issues.*, eric_module.module AS 'module' FROM issues JOIN eric_module ON issues.module_location = eric_module.id ORDER BY $condition DESC LIMIT $start, $records_per_page ";
+
+		$q = $this->conn->query($sql) or die("Failed!");
+
+		while($r = $q->fetch(PDO::FETCH_ASSOC)) {
+			$data[] = $r;
+		}
+
+		return $data;
+	}
 }

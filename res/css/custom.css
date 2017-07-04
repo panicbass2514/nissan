@@ -137,6 +137,16 @@ Base styles
 	justify-content: space-between;
 }
 
+.user-profile {
+	color: #fff;
+	margin-top: -80px;
+	margin-right: 10px;
+	flex-wrap: wrap;
+	position: absolute;
+	right: 0;
+	line-height: 30%;
+}
+
 .search-workstation, .search-issues, .search-inventory, .search-nissan, .search-employee, .search-supplier {
 	/*margin-left: 1000px;*/
 	display: flex;
@@ -358,13 +368,23 @@ pre{
 
 
 
+/*--------------------------------------------------------------
+Styles for Container
+--------------------------------------------------------------*/
+.form-container {
+	width: 30%;
+	text-align: center;
+}
 
-
-
-
-
-
-
+.form-signin-heading {
+	background: #e74c3c;
+	color: #fff;
+	padding: 20px;
+	border: 2px solid;
+	border-radius: 10px;
+	font-family: "nissan";
+	font-size: 4em;
+}
 
 
 

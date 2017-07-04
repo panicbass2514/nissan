@@ -70,14 +70,14 @@ if (isset($_REQUEST['del_id'])) {
 							<th>Module Location</th>
 							<td>
 								<?php 
-									$module_location = $issues->getModule("eric_module");
-									echo '<select id="myselect" class="form-control" name="module_location"><option value="11">Select Module</option>';
-										foreach($module_location as $m) {
-											extract($m);
-											echo "<option value='$id'>$module</option>";
-										}
-										echo '</select>';
-								 ?>
+								$module_location = $issues->getModule("eric_module");
+								echo '<select id="myselect" class="form-control" name="module_location"><option value="11">Select Module</option>';
+								foreach($module_location as $m) {
+									extract($m);
+									echo "<option value='$id'>$module</option>";
+								}
+								echo '</select>';
+								?>
 							</td>
 						</tr>
 						<tr>
@@ -86,7 +86,12 @@ if (isset($_REQUEST['del_id'])) {
 						</tr>
 						<tr>
 							<th>Status</th>
-							<td><input class="form-control"  type="text" name="status" value=""></td>
+							<td>
+								<select name="status" class="form-control" id="status">
+									<option value="1">Open</option>
+									<option value="0">Closed</option>
+								</select>
+							</td>
 						</tr>
 						<tr>
 							<th>User</th>
@@ -130,9 +135,13 @@ if (isset($_REQUEST['del_id'])) {
 <script>
 	/*Must apply only after HTML has loaded*/
 	$(document).ready(function () {
-		$("#issues_form").on("submit", function(e) {
-			$('#workstation_dialog .modal-header .modal-title').html("Success");
+		// $("#issues_form").on("submit", function(e) {
+		// 	$('#workstation_dialog .modal-header .modal-title').html("Success");
 
+		// });
+
+		$('#issue_delete_form').on('show.bs.modal', function(e) {
+			$(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
 		});
 
 	});

@@ -6,7 +6,7 @@ function __autoload($class) {
 
 $workstation = new Workstation;
 $nissan = new NissanDatabase;
-$self = "http://localhost/nissan/view/workstation.php";
+$self = "http://it/nissan/view/workstation.php";
 $limit = 5;
 
 $value = $nissan->showData("workstation", $limit);

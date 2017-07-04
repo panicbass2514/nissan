@@ -7,7 +7,7 @@ function __autoload($class) {
 // Instances from the classes
 $supplier = new Supplier;
 $nissan = new NissanDatabase;
-$self = "http://localhost/nissan/view/supplier.php";
+$self = "http://it/nissan/view/supplier.php";
 // Limit options on the table
 $limit = 5;
 

@@ -1,0 +1,116 @@
+id,price,unit,items,begin_bal,purchase,total,out_requisition,avail_bal,min_qty,status
+,4.00 ,PC,Ballpen BLACK,10,,10,0,10,5,*
+,4.00 ,PC,Ballpen BLUE,21,,21,0,21,6,*
+,4.00 ,PC,Ballpen RED,27,,27,0,27,7,*
+,3.25 ,PC,Binder Clip Medium,0,,0,0,0,8,ORDER NOW
+,130.00 ,REAM,Bondpaper A4,3,,3,0,3,9,ORDER NOW
+,144.00 ,REAM,Bondpaper LONG,28,,28,0,28,10,*
+,122.00 ,REAM,Bondpaper SHORT,7,,7,0,7,11,ORDER NOW
+,275.00 ,PC,Calculator,0,,0,0,0,12,ORDER NOW
+,485.00 ,BOX,Carbon Paper BLUE- Short,0,,0,0,0,13,ORDER NOW
+,,PC,Carpenters Pencil,16,,16,0,16,14,*
+,36.00 ,PC,Clearbook Long,2,,2,0,2,15,ORDER NOW
+,,PC,Clearbook Short,0,,0,0,0,16,ORDER NOW
+,125.00 ,REAM,Colored Bondpaper short BLUE,8,,8,0,8,17,ORDER NOW
+,125.00 ,REAM,Colored Bondpaper short GREEN,6,,6,0,6,18,ORDER NOW
+,125.00 ,REAM,Colored Bondpaper short PINK,3,,3,0,3,19,ORDER NOW
+,125.00 ,REAM,Colored Bondpaper short YELLOW,8,,8,0,8,20,ORDER NOW
+,,,Columnar Book 6 Colums,4,,4,0,4,21,ORDER NOW
+,,PC,Columnar Book No. 747,1,,1,0,1,22,ORDER NOW
+,851.00 ,BOX,Continuous Form,1,,1,0,1,23,ORDER NOW
+,,PC,Cork Board 18 x 24,0,,0,0,0,24,ORDER NOW
+,20.00 ,PC,Correction Tape,9,,9,0,9,25,ORDER NOW
+,25.00 ,PC,Cutter Plastic Metal combination BIG,0,,0,0,0,26,ORDER NOW
+,120.00 ,PC,Envelope Long  BROWN,63,,63,0,63,27,*
+,,PC,Envelope Long YELLOW,0,,0,0,0,28,ORDER NOW
+,95.00 ,PC,Envelope Short BROWN,90,,90,0,90,29,*
+,,PC,Envelope Short YELLOW,0,,0,0,0,30,ORDER NOW
+,9.50 ,PC,Eraser - Small,1,,1,0,1,31,ORDER NOW
+,9.00 ,PC,Expanded Envelope LONG,13,,13,0,13,32,ORDER NOW
+,,PC,Expanded Envelope LONG BLUE,1,,1,0,1,33,ORDER NOW
+,,PC,Expanded Envelope SHORT RED ORANGE,6,,6,0,6,34,ORDER NOW
+,,PC,Expanded Folder Long BLUE,14,,14,0,14,35,ORDER NOW
+,,PC,Expanded Folder Long DARK PINK,1,,1,0,1,36,ORDER NOW
+,,PC,Expanded Folder Long GREEN,25,,25,0,25,37,ORDER NOW
+,,PC,Expanded Folder Long ORANGE,2,,2,0,2,38,ORDER NOW
+,,PC,Expanded Folder Long VIOLET,1,,1,0,1,39,ORDER NOW
+,,PC,Expanded Folder Long YELLOW,5,,5,0,5,40,ORDER NOW
+,,PC,Expanded Folder Short GREEN,20,,20,0,20,41,ORDER NOW
+,,PC,Expanded Folder Short ORANGE,0,,0,0,0,42,ORDER NOW
+,,,Fastener (METAL Short),0,,0,0,0,43,ORDER NOW
+,,BOX,Fastener LONG,1,,1,0,1,44,ORDER NOW
+,20.00 ,BOX,Fastener SHORT,4,,4,0,4,45,ORDER NOW
+,4.75 ,PC,Folder Long GREEN,126,,126,0,126,46,*
+,3.20 ,PC,Folder Long WHITE,123,,123,0,123,47,*
+,4.25 ,PC,Folder Short GREEN,261,,261,0,261,48,*
+,2.70 ,PC,Folder Short WHITE,146,,146,0,146,49,*
+,20.00 ,PC,Glue Stick,3,,3,0,3,50,ORDER NOW
+,26.00 ,PC,Highlighter -  GREEN   STABILO,1,,1,0,1,51,ORDER NOW
+,,,Highlighter ORANGE,2,,2,0,2,52,ORDER NOW
+,,,Highlighter PINK,1,,1,0,1,53,ORDER NOW
+,,,Highlighter YELLOW GREEN,3,,3,0,3,54,ORDER NOW
+,,REAM,Letterhead LONG,7,,7,0,7,55,ORDER NOW
+,,REAM,Letterhead SHORT,2,,2,0,2,56,ORDER NOW
+,99.00 ,BOTTLE,Marker Ink Refill BLACK,2,,2,0,2,57,ORDER NOW
+,99.00 ,BOTTLE,Marker ink Refill BLUE,1,,1,0,1,58,ORDER NOW
+,99.00 ,BOTTLE,Marker Ink Refill GREEN,3,,3,0,3,59,ORDER NOW
+,,,Marker Ink Refill RED,1,,1,0,1,60,ORDER NOW
+,29.00 ,PC,Marker Permanent  BLACK,1,,1,0,1,61,ORDER NOW
+,29.00 ,PC,Marker Permanent  BLUE,2,,2,0,2,62,ORDER NOW
+,29.00 ,PC,Marker Permanent GREEN,0,,0,0,0,63,ORDER NOW
+,29.00 ,PC,Marker Permanent RED,4,,4,0,4,64,ORDER NOW
+,,PAD,Memo Pad,40,,40,0,40,65,ORDER NOW
+,15.75 ,PC,My Gel BLACK,1,,1,0,1,66,ORDER NOW
+,15.75 ,PC,My Gel BLUE,2,,2,0,2,67,ORDER NOW
+,15.75 ,PC,My Gel RED,3,,3,0,3,68,ORDER NOW
+,11.25 ,PC,My Gel Refill BLACK,2,,2,0,2,69,ORDER NOW
+,15.75 ,PC,My Gel VIOLET,3,,3,0,3,70,ORDER NOW
+,,REAM,Nissan Watermark  C.R (1),5,,5,0,5,71,ORDER NOW
+,,REAM,Nissan Watermark  O.R  (2),12,,12,0,12,72,ORDER NOW
+,,REAM,Onion Skin LONG,4,,4,0,4,73,ORDER NOW
+,37.00 ,ROLL,Packaging Tape,12,,12,0,12,74,ORDER NOW
+,6.00 ,BOX,Paper Clip - Small,8,,8,0,8,75,ORDER NOW
+,14.00 ,BOX,Paper Clip- Jumbo,14,,14,0,14,76,ORDER NOW
+,5.15 ,PC,Pencil,6,,6,0,6,77,ORDER NOW
+,FREE from YY,PACK,Plastic Plain,9,,9,0,9,78,ORDER NOW
+,,PC,Plastic Report File (Clear Folder Long),0,,0,0,0,79,ORDER NOW
+,115.00 ,PC,Puncher BIG,1,,1,0,1,80,ORDER NOW
+,30.00 ,PC,Puncher SMALL,0,,0,0,0,81,ORDER NOW
+,3.75 ,PC,Ruler,0,,0,0,0,82,ORDER NOW
+,38.00 ,PC,Scissors BIG,3,,3,0,3,83,ORDER NOW
+,24.00 ,PC,Scissors SMALL,0,,0,0,0,84,ORDER NOW
+,17.00 ,PC,Scotch Tape,7,,7,0,7,85,ORDER NOW
+,,PC,Stamp pad,3,,3,0,3,86,ORDER NOW
+,24.50 ,BOTTLE,Stamp Pad Ink BLACK,3,,3,0,3,87,ORDER NOW
+,,,Stamp Pad Ink VIOLET,1,,1,0,1,88,ORDER NOW
+,24.50 ,BOTTLE,Stamp Pad Ink BLUE,1,,1,0,1,89,ORDER NOW
+,24.53 ,BOTTLE,Stamp Pad ink GREEN,0,,0,0,0,90,ORDER NOW
+,24.51 ,BOTTLE,Stamp Pad Ink RED,2,,2,0,2,91,ORDER NOW
+,24.52 ,BOTTLE,Stamp Pad Ink VIOLET,2,,2,0,2,92,ORDER NOW
+,58.00 ,BOX,Staple Wire NO. 10,8,,8,0,8,93,ORDER NOW
+,30.00 ,BOX,Staple Wire NO. 35,10,,10,0,10,94,ORDER NOW
+,268.00 ,PC,Stapler ,1,,1,0,1,95,ORDER NOW
+,11.00 ,PC,Steno Notebook,9,,9,0,9,96,ORDER NOW
+,16.50 ,PC,University Notebook ,3,,3,0,3,97,ORDER NOW
+,126.00 ,REAM,Whitewoves LONG,15,,15,0,15,98,ORDER NOW
+,106.00 ,REAM,Whitewoves SHORT,5,,5,0,5,99,ORDER NOW
+,45.00 ,PC,Wyteboard Marker BLACK,1,,1,0,1,100,ORDER NOW
+,45.00 ,PC,Wyteboard Marker BLUE,2,,2,0,2,101,ORDER NOW
+,45.00 ,PC,Wyteboard Marker RED,1,,1,0,1,102,ORDER NOW
+,25.00 ,ROLL,RibbOn Refill CREST,28,,28,0,28,103,ORDER NOW
+,,,Envelope Plastic LONG,14,,14,0,14,104,ORDER NOW
+,,,Envelope Plastic Short,27,,27,0,27,105,ORDER NOW
+,,PC,Legal Envelope with Letterhead,100,,100,0,100,106,ORDER NOW
+,,PC,Legal Envelope ordinary,120,,120,0,120,107,*
+,,,Folder Long Yellow,0,,0,0,0,108,ORDER NOW
+,99.00 ,,Wyteboard Ink Refill Black,1,,1,0,1,109,ORDER NOW
+,,,Wyteboard Ink Refill RED,3,,3,0,3,110,ORDER NOW
+,,,Wyteboard Ink Refill Blue,1,,1,0,1,111,ORDER NOW
+,,,BULLDOG CLIP 2 INCHES,24,,24,0,24,112,ORDER NOW
+,,,BULLDOG CLIP 3 INCHES,18,,18,0,18,113,ORDER NOW
+,,,STICKY NOTE PAD,1,,1,0,1,114,ORDER NOW
+,,,Double Sided Tape,4,,4,0,4,115,ORDER NOW
+,Ms.Anne,,Refill of Plus Correction Tape,4,,4,0,4,116,ORDER NOW
+,,,Short Yellow Expanded Folder,0,,0,0,0,117,ORDER NOW
+,,,Whyteboard Eraser,1,,1,0,1,118,ORDER NOW
+,,,LOG BOOK,1,,1,0,1,119,ORDER NOW

@@ -1,12 +1,14 @@
 /*Workstation Backend Query*/
 
 $(document).ready(function() {
+	
+	// Search Sripts
 	$('.search-workstation input[type="text"').on("keyup input", function() {
 		var inputVal = $(this).val();
 		var resultDropdown = $(".result");
 
 		if (inputVal.length) {
-			$.get("http://localhost/nissan/view/workstation_backend.php", {key: inputVal}).done(function(data){
+			$.get(localhost+"/view/workstation_backend.php", {key: inputVal}).done(function(data){
 				resultDropdown.html(data);
 			});
 		} else {
@@ -19,7 +21,7 @@ $(document).ready(function() {
 		var resultDropdown = $(".result");
 
 		if (inputVal.length) {
-			$.get("http://localhost/nissan/view/supplier_backend.php", {key: inputVal}).done(function(data){
+			$.get(localhost+"/view/supplier_backend.php", {key: inputVal}).done(function(data){
 				resultDropdown.html(data);
 			});
 		} else {
@@ -32,7 +34,7 @@ $(document).ready(function() {
 		var resultDropdown = $(".result");
 
 		if (inputVal.length) {
-			$.get("http://localhost/nissan/view/issues_backend.php", {key: inputVal}).done(function(data){
+			$.get(localhost+"/view/issues_backend.php", {key: inputVal}).done(function(data){
 				resultDropdown.html(data);
 			});
 		} else {
@@ -45,7 +47,7 @@ $(document).ready(function() {
 		var resultDropdown = $(".result");
 
 		if (inputVal.length) {
-			$.get("http://localhost/nissan/view/employee_backend.php", {key: inputVal}).done(function(data){
+			$.get(localhost+"/view/employee_backend.php", {key: inputVal}).done(function(data){
 				resultDropdown.html(data);
 			});
 		} else {
@@ -58,7 +60,7 @@ $(document).ready(function() {
 		var resultDropdown = $(".result");
 
 		if(inputVal.length) {
-			$.get("http://localhost/nissan/view/inventory_backend.php", {key: inputVal}).done(function(data) {
+			$.get(localhost+"/view/inventory_backend.php", {key: inputVal}).done(function(data) {
 				resultDropdown.html(data);
 			});
 		} else {
