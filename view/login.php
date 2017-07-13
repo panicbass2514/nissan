@@ -39,7 +39,7 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
 			$log_date = date_format($date, 'Y-m-d H:i:s');
 			$user->login_detail($user_id, $login_date);
 
-			header("location: http://".$_SERVER['SERVER_NAME']."/nissan/index.php");
+			header("location: http://".$_SERVER['SERVER_NAME']."/nissan/view/home.php");
 
 		} else {
 			echo "email or password does not exists.";

@@ -2,7 +2,6 @@
 include('header.php');
 include('issues_backend.php');
 
-
 // Checks if the key is requested or set
 if (!empty($_REQUEST['key']) && isset($_REQUEST['key'])) {
 	$key = $_REQUEST['key'];

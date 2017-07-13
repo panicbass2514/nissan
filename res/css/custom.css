@@ -291,6 +291,25 @@ pre{
 
 }
 
+.section-update {
+	/*position: absolute;
+	background: #262626;
+	transition: left 0.3s linear;
+	-moz-transition: left 0.3s linear;
+	-webkit-transition: left 0.3s linear;
+
+	top: 25%;
+	left: 15%;
+	bottom: 0;
+	width: 75%;*/
+
+	display: flex;
+	width: 100%;
+	height: 400px;
+	background: inherit;
+	margin-top: 25px;
+}
+
 .pdsa-sn-wrapper ul {
 	width: 11em;
 	list-style: none;
@@ -389,3 +408,65 @@ Styles for Container
 
 
 
+.update-item {
+	background: #ecf0f1;
+	width: 100%;
+	height: 100%;
+	margin: 10px;
+	border: 1px solid #bdc3c7;
+}
+
+.item-header {
+	width: 100%;
+	height: 10%;
+	display: inline-block;
+	background: #e74c3c;
+	border-bottom: 3px solid #c0392b;
+	padding: 2px;
+}
+
+.item-header h4 {
+	color: #fff;
+}
+
+.item-header  a {
+	text-decoration: none;
+	color: #2980b9;
+}
+
+
+#item_details {
+	display: block;
+	height: 30%;
+	background: #3498db;
+}
+
+#item_calendar {
+	display: block;
+	height: 70%;
+	background: #1abc9c;
+}
+
+#form-eval-container {
+	display: flex;
+	width: 100%;
+	height: 300px;
+	background: inherit;
+	margin-top: 10px;
+}
+
+#form-eval-container-item {
+	background: #fff;
+	width: 100%;
+	height: 100%;
+	margin: 10px;
+	padding: 30px;
+}
+
+#form-eval-container-item  div {
+	display: block;
+}
+
+#form-eval-container-item  label {
+	display: block;
+}

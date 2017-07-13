@@ -55,7 +55,7 @@ ob_start();
             <?php 
 
             $id =  $_SESSION['user_session'];
-            $admin = '';
+            $admin_status = '';
             $host = 'localhost';
             $user = 'root';
             $db = 'nissan';
@@ -76,7 +76,7 @@ ob_start();
             } 
             foreach($data as $r) {
               echo "<h5>".$r['f_name']."</h5><span>".($r['admin'] == 1 ? "Admin" : " ")."</span>";
-              $admin .= $r['admin'];
+              $admin_status .= $r['admin'];
             }
 
             $sql = "SELECT * FROM employee_logs WHERE employee_id = :employee_id
@@ -102,7 +102,7 @@ ob_start();
           <div class="nav-mixed menu">
             <nav id="multi-level-nav" class="multi-level-nav" role="navigation">
               <ul>
-                <li><div class="dropdown"><a class="dropbtn" href="<?php echo "http://".$_SERVER['SERVER_NAME']?>/nissan/index.php">Home</a></div>
+                <li><div class="dropdown"><a class="dropbtn" href="<?php echo "http://".$_SERVER['SERVER_NAME']?>/nissan/view/home.php">Home</a></div>
                 </li>
                 <li>
                   <div class="dropdown">
@@ -155,19 +155,21 @@ ob_start();
           <div class='<?php echo "$searchClass"; ?>'>
             <form class="navbar-form" role="search" action="<?php echo "http://".$_SERVER['SERVER_NAME']?>/nissan/view/logout.php"">
               <div class="input-group add-on">
-                <input class="form-control" placeholder="Search" type="text" autocomplete="off">     
-                <div class="input-group-btn">
-                  <button class="btn btn-default" type="submit" disabled=""><i class="glyphicon glyphicon-search"></i></button>
-                  <button class="btn btn-danger" type="submit"><i class="glyphicon glyphicon-log-out"></i>&nbsp;LOGOUT</button>
+                <?php 
+                if ($_SERVER['PHP_SELF'] != '/nissan/view/home.php') {
+                  ?>
+                  <input class="form-control" placeholder="Search" type="text" autocomplete="off">     
+                  <div class="input-group-btn">
+                    <button class="btn btn-default" type="submit" disabled=""><i class="glyphicon glyphicon-search"></i></button>
+                 <?php } ?>
+                    <button class="btn btn-danger" type="submit"><i class="glyphicon glyphicon-log-out"></i>&nbsp;LOGOUT</button>
+                  </div>
                 </div>
-              </div>
-            </form>
-            
-          </div><!-- search-box -->
-        </div><!-- main-menu -->
-      </header><!-- .masthead -->
-      <!-- Side Nav -->
-      <!-- <section class="pdsa-sn-wrapper"> -->
+              </form>
+            </div><!-- search-box -->
+          </div><!-- main-menu -->
+        </header><!-- .masthead -->
+        <!-- Side Nav -->
         <!-- <ul id="sideNavParent">
           <li>
             <a href="Default.html">
@@ -242,7 +244,7 @@ ob_start();
               </div>
             </li>
           </ul> -->
-          <!-- </section> -->
+
           <!-- Main View -->
           <section class="#">
             <input type="hidden" id="sort" value="asc">

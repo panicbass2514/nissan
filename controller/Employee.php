@@ -82,6 +82,7 @@ class Employee {
 		return $data;
 	}
 
+
 	public function login($email, $pass) {
 		$sql = "SELECT * FROM employee WHERE email = :email AND pass = :pass";
 		$q = $this->conn->prepare($sql);
@@ -113,6 +114,7 @@ class Employee {
 
 		return $data;
 	}
+
 
 	public function showData($table, $records_per_page = 5) {
 		$start = 0;

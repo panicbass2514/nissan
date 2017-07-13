@@ -24,7 +24,7 @@ if(isset($_REQUEST['update'])) {
 	}
 }
 ?>
-<div class="modal fade" id="inventory_dialog" role="dialog">
+<!-- <div class="modal fade" id="inventory_dialog" role="dialog">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -54,10 +54,10 @@ if(isset($_REQUEST['update'])) {
 					</table>
 				</form>
 			</div>
-<!-- 			<div class="modal-footer">
+<div class="modal-footer">
 	<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 	<button type="button" id="submitForm" class="btn btn-default">Send</button>
+</div>
+</div>
+</div>
 </div> -->
-</div>
-</div>
-</div>
