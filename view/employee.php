@@ -106,7 +106,7 @@ if (isset($_REQUEST['del_id'])) {
 						<tr>
 							<td id="td_update">
 								<input type="submit" name="insert" value="Insert" class="btn btn-primary"></td>
-								<td><button class="btn btn-danger"><a href="employee.php">Cancel</a></button></td>
+								<td><button class="btn btn-danger"><a style="text-decoration: none; color: #fff;" href="employee.php">Cancel</a></button></td>
 							</tr>
 						</table>
 					</form>

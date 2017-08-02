@@ -158,8 +158,8 @@ if(isset($_REQUEST['key']) && !empty($_REQUEST['key'])) {
                             <td>$f_name</td>
                             <td>$mi</td>
                             <td>$l_name</td>
-                            <td>$dept</td>
-                            <td>$status</td>
+                            <td>$department</td>
+                            <td>$statusX</td>
                             <td>$contact</td>
                             ";
                             if ($admin_status == 1) {
