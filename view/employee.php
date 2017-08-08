@@ -1,39 +1,47 @@
 <?php 
 // Includes all the header menu and functions
 include('header.php');
+// Backend process
+// -Search
+// -Sort
 include('employee_backend.php');
 
 // Checks if the key is request or set
+// Searches employee record
 if (!empty($_REQUEST['key']) && isset($_REQUEST['key'])) {
 	$key = $_REQUEST['key'];
 }
 
 // Insert Data Verification
+// Adds employee record
 if(isset($_REQUEST['insert'])) {
 	extract($_REQUEST);
 	$pass = substr(strrev($f_name), -1).''.$l_name;
-	if($employee->insertData(md5(strtolower($pass)), $f_name, $mi, $l_name, $dept, $status, $contact, $email, "employee")) {
+	if($employee->insertData(md5(strtolower($pass)), $f_name, $mi, $l_name, $designation, $dept, $branch, $status, $contact, $email, "employee")) {
 		header("location:employee.php");
 	}
 }
 
 // Update Data Verification
+// Updates employee record
 if (isset($_REQUEST['update'])) {
 	extract($_REQUEST);
-	if ($employee->updateData($id, $pass, $f_name, $mi, $l_name, $dept, $status, $contact, $email, "employee")) {
+	if ($employee->updateData($id, $pass, $f_name, $mi, $l_name, $designation, $dept, $branch, $status, $contact, $email, "employee")) {
 		header("location:employee.php");
 	}
 }
 
 // Delete Data
+// Deletes employee record
 if (isset($_REQUEST['del_id'])) {
 	if ($nissan->deleteData($_REQUEST['del_id'], "employee")) {
 		header("location:employee.php");
 	}
 }
 ?>
-
+<!-- ================ -->
 <!-- Modal for delete -->
+<!-- ================ -->
 <div class="modal fade" id="employee_delete_form" role="dialog">
 	<div class="modal-dialog">
 		<div class="modal-content">
@@ -45,8 +53,9 @@ if (isset($_REQUEST['del_id'])) {
 		</div>
 	</div>
 </div>
-
+<!-- ==================== -->
 <!-- Modal for add/update -->
+<!-- ==================== -->
 <div class="modal fade" id="employee_dialog" role="dialog">
 	<div class="modal-dialog">
 		<div class="modal-content">
@@ -72,18 +81,48 @@ if (isset($_REQUEST['del_id'])) {
 							<td><input class="form-control" type="text" name="l_name" value=""></td>
 						</tr>
 						<tr>
+							<th>Designation</th>
+							<td>
+								<select name="dsg" id="myselect" class="form-control">
+									<option value="0">Select Designation</option>
+									<?php 
+									$designation = $employee->getDesignation("designation");
+									foreach($designation as $dg) {
+										extract($dg);
+										echo "<option value='$id'>$name</option>";
+									}	
+									?>
+								</select>
+							</td>
+						</tr>
+						<tr>
 							<th>Department</th>
 							<td>
-								<?php 
-								$department = $employee->getDepartment("department");
-								echo '<select id="myselect" class="form-control" name="dept">
-								<option value="0">Select Department</option>';
-								foreach($department as $d) {
-									extract($d);
-									echo "<option  value='$id'>$name</option>";
-								}
-								echo '</select>';
-								?>
+								<select id="myselect" class="form-control" name="dept">
+									<option value="0">Select Department</option>
+									<?php 
+									$department = $employee->getDepartment("department");
+									foreach($department as $d) {
+										extract($d);
+										echo "<option value='$id'>$name</option>";
+									}
+									?>
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<th>Branch</th>
+							<td>
+								<select name="bch" id="myselect" class="form-control">
+									<option value="0">Select Branch</option>
+									<?php 
+									$branch = $employee->getBranch("branch");
+									foreach($branch as $b) {
+										extract($b);
+										echo "<option value='$id'>$name</option>";
+									}
+									?>
+								</select>
 							</td>
 						</tr>
 						<tr>
@@ -115,20 +154,12 @@ if (isset($_REQUEST['del_id'])) {
 		</div>
 	</div>
 	<script>
-		/*Must apply only after HTML has loaded*/
+		/*=======================*/
+		/*Srcipt for delete form*/
+		/*=====================*/
 		$(document).ready(function () {
-
-		// $('#button_delete').click(function() 
-		// {
-		// 	var idx = $(this).val();
-
-		// 	$('.modal-header').val(idx);
-		// });
-
-		$('#employee_delete_form').on('show.bs.modal', function(e) {
-			$(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
+			$('#employee_delete_form').on('show.bs.modal', function(e) {
+				$(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
+			});
 		});
-
-		
-	});
-</script>
+	</script>

@@ -29,7 +29,7 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>                        
 				</button>
-				<a class="navbar-brand" href="#myPage"><img src="<?php echo "http://".$_SERVER['SERVER_NAME']?>/nissan/res/img/nissan_logo_sm.png" alt=""></a>
+				<a class="navbar-brand" href="/nissan/view/home.php"><img src="<?php echo "http://".$_SERVER['SERVER_NAME']?>/nissan/res/img/nissan_logo_sm.png" alt=""></a>
 			</div>
 			<div class="collapse navbar-collapse" id="myNavbar">
 				<ul class="nav navbar-nav navbar-right">

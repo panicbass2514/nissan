@@ -58,6 +58,12 @@ $nissan = new NissanDatabase;
 			</div> -->
 			<ul>
 				<li>
+					<span style="color: #ff0000;"> Updated </span><span>Fast Moving Inventory Update - <a href="../res/downloads/inventory_08072017_updated.xls" download="inventory_08072017_updated.xls">08/07/2017</a></span>
+				</li>
+				<li>
+					<span>Fast Moving Inventory Update - <a href="../res/downloads/inventory_08072017.xls" download="inventory_08072017.xls">08/07/2017</a></span>
+				</li>
+				<li>
 					<span>Fast Moving Inventory Update - <a href="../res/downloads/inventory_07312017.xls" download="inventory_07312017.xls">07/31/2017</a></span>
 				</li>
 				<li>

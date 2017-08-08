@@ -17,12 +17,12 @@ class Employee {
 		}
 	}
 
-	public function insertData($pass, $f_name, $mi, $l_name, $dept, $status, $contact, $email, $table) {
+	public function insertData($pass, $f_name, $mi, $l_name, $designation, $dept, $branch, $status, $contact, $email, $table) {
 
 		$sql = "INSERT INTO $table
-		SET pass=:pass, f_name=:f_name, mi=:mi, l_name=:l_name, dept=:dept, status=:status, contact=:contact, email=:email";
+		SET pass=:pass, f_name=:f_name, mi=:mi, l_name=:l_name, designation=:designation,  dept=:dept, branch=:branch, status=:status, contact=:contact, email=:email";
 		$q = $this->conn->prepare($sql);
-		$q->execute(array(":pass" => $pass, ":f_name" => $f_name, ":mi" => $mi, ":l_name" => $l_name, ":dept" => $dept, ":status" => $status, ":contact" => $contact, ":email" => $email));
+		$q->execute(array(":pass" => $pass, ":f_name" => $f_name, ":mi" => $mi, ":l_name" => $l_name, ":designation" => $designation, ":dept" => $dept, ":branch" => $branch, ":status" => $status, ":contact" => $contact, ":email" => $email));
 		if ($q) {
 			return true;
 		}
@@ -50,24 +50,26 @@ class Employee {
 		return true;
 	}
 
-	public function searchData($condition) {
-		$sql = "SELECT * FROM employee WHERE f_name LIKE ?";
+	
+
+	public function updateData($id, $pass, $f_name, $mi, $l_name, $dsg, $dept, $bch, $status, $contact, $email, $table) {
+		$sql = "UPDATE $table
+		SET pass=:pass, f_name=:f_name, mi=:mi, l_name=:l_name, dsg=:dsg, dept=:dept, bch=:bch, status=:status, contact=:contact, email=:email
+		WHERE id=:id";
 		$q = $this->conn->prepare($sql);
-		$q->execute(array('%'.$condition.'%'));
+		$q->execute(array(":id" => $id, ":pass" => $pass, ":f_name" => $f_name, ":mi" => $mi, ":l_name" => $l_name, ":designation" => $designation, ":dept" => $dept, ":branch" => $branch, ":status" => $status, ":contact" => $contact, ":email" => $email));
+		return true;
+	}
+
+	public function getDesignation($table) {
+		$sql = "SELECT * FROM $table";
+		$q = $this->conn->prepare($sql);
+		$q->execute();
 
 		while($r = $q->fetch(PDO::FETCH_ASSOC)) {
 			$data[] = $r;
 		}
 		return $data;
-	}
-
-	public function updateData($id, $pass, $f_name, $mi, $l_name, $dept, $status, $contact, $email, $table) {
-		$sql = "UPDATE $table
-		SET pass=:pass, f_name=:f_name, mi=:mi, l_name=:l_name, dept=:dept, status=:status, contact=:contact, email=:email
-		WHERE id=:id";
-		$q = $this->conn->prepare($sql);
-		$q->execute(array(":id" => $id, ":pass" => $pass, ":f_name" => $f_name, ":mi" => $mi, ":l_name" => $l_name, ":dept" => $dept, ":status" => $status, ":contact" => $contact, ":email" => $email));
-		return true;
 	}
 
 	public function getDepartment($table) {
@@ -82,6 +84,16 @@ class Employee {
 		return $data;
 	}
 
+	public function getBranch($table) {
+		$sql = "SELECT * FROM $table";
+		$q = $this->conn->prepare($sql);
+		$q->execute();
+
+		while($r = $q->fetch(PDO::FETCH_ASSOC)) {
+			$data[] = $r;
+		}
+		return $data;
+	}
 
 	public function login($email, $pass) {
 		$sql = "SELECT * FROM employee WHERE email = :email AND pass = :pass";
@@ -122,7 +134,12 @@ class Employee {
 			$start = ($_GET['page_no'] - 1) * $records_per_page;
 		}
 
-		$sql = "SELECT employee.*, department.name AS 'department' FROM $table JOIN department ON employee.dept = department.id LIMIT $start, $records_per_page";
+		$sql = "SELECT employee.*, designation.name AS 'designation', department.name AS 'department', branch.name AS 'branch' 
+		FROM $table 
+		JOIN designation ON employee.dsg = designation.id
+		JOIN department ON employee.dept = department.id
+		JOIN branch ON employee.bch = branch.id 
+		LIMIT $start, $records_per_page";
 
 		$q = $this->conn->query($sql) or die("Failed!");
 
@@ -132,6 +149,20 @@ class Employee {
 		return $data;
 	}
 
+	public function searchData($condition) {
+		$sql = "SELECT employee.*, designation.name AS 'designation', department.name AS 'department', branch.name AS 'branch' FROM employee 
+		JOIN designation ON employee.dsg = designation.id
+		JOIN department ON employee.dept = department.id
+		JOIN branch ON employee.bch = branch.id 
+		WHERE f_name LIKE ?";
+		$q = $this->conn->prepare($sql);
+		$q->execute(array('%'.$condition.'%'));
+
+		while($r = $q->fetch(PDO::FETCH_ASSOC)) {
+			$data[] = $r;
+		}
+		return $data;
+	}
 	public function sortData($condition, $records_per_page = 5) {
 		$start = 0;
 
@@ -139,7 +170,12 @@ class Employee {
 			$start = ($_GET['page_no'] - 1) * $records_per_page;
 		}
 		
-		$sql = "SELECT * FROM employee ORDER BY $condition LIMIT $start, $records_per_page";
+		$sql = "SELECT employee.*, designation.name AS 'designation', department.name AS 'department', branch.name AS 'branch' 
+		FROM employee
+		JOIN designation ON employee.dsg = designation.id
+		JOIN department ON employee.dept = department.id
+		JOIN branch ON employee.bch = branch.id
+		ORDER BY $condition LIMIT $start, $records_per_page";
 
 		$q = $this->conn->query($sql) or die("Failed!");
 
