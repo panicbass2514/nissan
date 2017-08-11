@@ -10,6 +10,7 @@ function __autoload($class) {
 }
 
 $issues = new Issues;
+$employee = new Employee;
 $nissan = new NissanDatabase;
 $self = 'http://it/nissan/view/issues.php';
 $limit = 5;

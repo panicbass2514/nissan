@@ -796,3 +796,101 @@ Styles for Container
 			font-size: 150px;
 		}
 	}
+
+	/************************/
+	/*SEARCH DROPDOWN STYLE*/
+	/************************/
+
+	.searchselectEmp {
+		position: relative;
+		color: #000;
+		margin-bottom: 10px;
+		/*font-size: 16px;*/
+	}
+
+	.searchselectEmp_Input {
+		width: 250px;
+		height: 32px;
+		background: #fcfcfc;
+		border: 1px solid #aaa;
+		border-radius: 5px;
+		text-indent: 10px;
+		padding-right: 20px;
+		width: 200px;
+		
+		/*font: 200 16px/1.5 Helvetica, Verdana, sans-serif;*/
+	}
+
+	.searchselectEmp_Caret_Down {
+		position: absolute;
+		top: 10px;
+		left: 180px;
+		cursor: pointer;
+	}
+
+	.searchselectEmp_Times {
+		position: absolute;
+		top: 10px;
+		left: 210px;
+		cursor: pointer;
+		display: none;
+	}
+
+	.searchselectEmp_List {
+		list-style-type: none;
+		margin: 0;
+		padding: 0;
+		overflow: auto;
+		overflow-x: hidden;
+		height: 20em;
+		width: 250px;
+		position: absolute;
+	}
+
+	.searchselectEmp_List li {
+		list-style-type: none;
+		background: #ffffff;
+		color: #000000;
+		/*font: 200 16px/1.5 Helvetica, Verdana, sans-serif;*/
+		border-bottom: 1px solid #ccc;
+	}
+
+	.searchselectEmp_List li:hover {
+		cursor: pointer;
+		background: #3498db;
+		color: #ffffff;
+	}
+
+
+	.searchselectEmp_List li label {
+		padding: 0.5em;
+		cursor: pointer;
+	}
+
+	.searchselectEmp_List li:hover label {
+		color: #ffffff;
+	}
+
+	.searchselectEmp_Input::-ms-clear {
+		display: none;
+		width: 0;
+		height: 0;
+	}
+
+	.searchselectEmp_Input::-ms-reveal {
+		display: none;
+		width: 0;
+		height: 0;
+	}
+
+	.searchselectEmp_Input::-webkit-search-decoration,
+	.searchselectEmp_Input::-webkit-search-cancel-button,
+	.searchselectEmp_Input::-webkit-search-results-button,
+	.searchselectEmp_Input::-webkit-search-results-decoration {
+		display: none;
+	}
+	/* END SELECT3.css */
+
+	#wrapper{
+		margin-top: 20px;
+		margin-left: 300px;

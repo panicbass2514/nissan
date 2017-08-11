@@ -17,7 +17,7 @@ if (!empty($_REQUEST['key']) && isset($_REQUEST['key'])) {
 if(isset($_REQUEST['insert'])) {
 	extract($_REQUEST);
 	$pass = substr(strrev($f_name), -1).''.$l_name;
-	if($employee->insertData(md5(strtolower($pass)), $f_name, $mi, $l_name, $designation, $dept, $branch, $status, $contact, $email, "employee")) {
+	if($employee->insertData(md5(strtolower($pass)), $f_name, $mi, $l_name, $dsg, $dept, $bch, $status, $contact, $email, "employee")) {
 		header("location:employee.php");
 	}
 }
@@ -26,7 +26,7 @@ if(isset($_REQUEST['insert'])) {
 // Updates employee record
 if (isset($_REQUEST['update'])) {
 	extract($_REQUEST);
-	if ($employee->updateData($id, $pass, $f_name, $mi, $l_name, $designation, $dept, $branch, $status, $contact, $email, "employee")) {
+	if ($employee->updateData($id, $pass, $f_name, $mi, $l_name, $dsg, $dept, $bch, $status, $contact, $email, "employee")) {
 		header("location:employee.php");
 	}
 }
@@ -145,7 +145,7 @@ if (isset($_REQUEST['del_id'])) {
 						<tr>
 							<td id="td_update">
 								<input type="submit" name="insert" value="Insert" class="btn btn-primary"></td>
-								<td><button class="btn btn-danger"><a style="text-decoration: none; color: #fff;" href="employee.php">Cancel</a></button></td>
+								<td><button class="btn btn-danger"><a href="employee.php">Cancel</a></button></td>
 							</tr>
 						</table>
 					</form>

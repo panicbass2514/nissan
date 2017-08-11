@@ -17,12 +17,12 @@ class Employee {
 		}
 	}
 
-	public function insertData($pass, $f_name, $mi, $l_name, $designation, $dept, $branch, $status, $contact, $email, $table) {
+	public function insertData($pass, $f_name, $mi, $l_name, $dsg, $dept, $bch, $status, $contact, $email, $table) {
 
 		$sql = "INSERT INTO $table
-		SET pass=:pass, f_name=:f_name, mi=:mi, l_name=:l_name, designation=:designation,  dept=:dept, branch=:branch, status=:status, contact=:contact, email=:email";
+		SET pass=:pass, f_name=:f_name, mi=:mi, l_name=:l_name, dsg=:dsg,  dept=:dept, bch=:bch, status=:status, contact=:contact, email=:email";
 		$q = $this->conn->prepare($sql);
-		$q->execute(array(":pass" => $pass, ":f_name" => $f_name, ":mi" => $mi, ":l_name" => $l_name, ":designation" => $designation, ":dept" => $dept, ":branch" => $branch, ":status" => $status, ":contact" => $contact, ":email" => $email));
+		$q->execute(array(":pass" => $pass, ":f_name" => $f_name, ":mi" => $mi, ":l_name" => $l_name, ":dsg" => $dsg, ":dept" => $dept, ":bch" => $bch, ":status" => $status, ":contact" => $contact, ":email" => $email));
 		if ($q) {
 			return true;
 		}
@@ -51,13 +51,12 @@ class Employee {
 	}
 
 	
-
 	public function updateData($id, $pass, $f_name, $mi, $l_name, $dsg, $dept, $bch, $status, $contact, $email, $table) {
 		$sql = "UPDATE $table
 		SET pass=:pass, f_name=:f_name, mi=:mi, l_name=:l_name, dsg=:dsg, dept=:dept, bch=:bch, status=:status, contact=:contact, email=:email
 		WHERE id=:id";
 		$q = $this->conn->prepare($sql);
-		$q->execute(array(":id" => $id, ":pass" => $pass, ":f_name" => $f_name, ":mi" => $mi, ":l_name" => $l_name, ":designation" => $designation, ":dept" => $dept, ":branch" => $branch, ":status" => $status, ":contact" => $contact, ":email" => $email));
+		$q->execute(array(":id" => $id, ":pass" => $pass, ":f_name" => $f_name, ":mi" => $mi, ":l_name" => $l_name, ":dsg" => $dsg, ":dept" => $dept, ":bch" => $bch, ":status" => $status, ":contact" => $contact, ":email" => $email));
 		return true;
 	}
 
@@ -127,6 +126,17 @@ class Employee {
 		return $data;
 	}
 
+	public function showEmployee($table) {
+		$sql = "SELECT * FROM $table";
+		$q = $this->conn->prepare($sql);
+		$q->execute();
+
+		while($r = $q->fetch(PDO::FETCH_ASSOC)) {
+			$data[] = $r;
+		}
+
+		return $data;
+	}
 
 	public function showData($table, $records_per_page = 5) {
 		$start = 0;

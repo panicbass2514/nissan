@@ -274,7 +274,7 @@ if(isset($_REQUEST['key']) && !empty($_REQUEST['key'])) {
         });
 
         // Generates a pre-rendered values for the update modal
-        function employeeUpdate(id, pass, f_name, mi, l_name, designation, dept, branch, status, contact, email) {
+        function employeeUpdate(id, pass, f_name, mi, l_name, dsg, dept, bch, status, contact, email) {
             $('.modal-title').html("Update Employee");
             $('#td_update').html("<input type='submit' name='update' value='Update' class='btn btn-primary'>");
             $('input[name="id"]').val(id);
@@ -282,9 +282,9 @@ if(isset($_REQUEST['key']) && !empty($_REQUEST['key'])) {
             $('input[name="f_name"]').val(f_name);
             $('input[name="mi"]').val(mi);
             $('input[name="l_name"]').val(l_name);
-            $('select[name="designation"]').val(designation);
+            $('select[name="dsg"]').val(dsg);
             $('select[name="dept"]').val(dept);
-            $('select[name="branch"]').val(branch);
+            $('select[name="bch"]').val(bch);
             $('select[name="status"]').val(status);
             $('input[name="contact"]').val(contact);
             $('input[name="email"]').val(email);
